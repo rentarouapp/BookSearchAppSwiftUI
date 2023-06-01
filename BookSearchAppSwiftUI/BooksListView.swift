@@ -9,7 +9,14 @@ import SwiftUI
 
 struct BooksListView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(spacing: 10) {
+            Text("Books List")
+                .font(.system(size: 38).bold())
+                .foregroundColor(.primary)
+            Text("素晴らしい本たち")
+                .font(.system(size: 20))
+                .foregroundColor(.secondary)
+        }
     }
 }
 
