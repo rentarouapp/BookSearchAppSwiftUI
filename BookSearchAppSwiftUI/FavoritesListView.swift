@@ -20,6 +20,15 @@ struct FavoritesListView: View {
             }
             .navigationTitle("お気に入り")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        print("編集タップ")
+                    }) {
+                        Text("編集")
+                    }
+                }
+            }
         }
     }
 }
