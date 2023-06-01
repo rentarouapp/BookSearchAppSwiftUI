@@ -9,7 +9,14 @@ import SwiftUI
 
 struct FavoritesListView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(spacing: 10) {
+            Text("Favorites List")
+                .font(.system(size: 38).bold())
+                .foregroundColor(.primary)
+            Text("お気に入りの本たち")
+                .font(.system(size: 20))
+                .foregroundColor(.secondary)
+        }
     }
 }
 
