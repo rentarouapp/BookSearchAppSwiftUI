@@ -22,6 +22,7 @@
 		B7AEA27C2A28DCBF009069C6 /* BooksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AEA27B2A28DCBF009069C6 /* BooksListView.swift */; };
 		B7AEA27E2A28DCD4009069C6 /* FavoritesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AEA27D2A28DCD4009069C6 /* FavoritesListView.swift */; };
 		B7AEA2812A29B9E9009069C6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AEA2802A29B9E9009069C6 /* Constants.swift */; };
+		B7AEA2832A2A3219009069C6 /* BookDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AEA2822A2A3219009069C6 /* BookDescriptionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		B7AEA27B2A28DCBF009069C6 /* BooksListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksListView.swift; sourceTree = "<group>"; };
 		B7AEA27D2A28DCD4009069C6 /* FavoritesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListView.swift; sourceTree = "<group>"; };
 		B7AEA2802A29B9E9009069C6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B7AEA2822A2A3219009069C6 /* BookDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDescriptionView.swift; sourceTree = "<group>"; };
 		C29BD669B6BE061443266B0D /* Pods_BookSearchAppSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookSearchAppSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBC08429602738B78C9A4CDC /* Pods-BookSearchAppSwiftUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookSearchAppSwiftUITests.release.xcconfig"; path = "Target Support Files/Pods-BookSearchAppSwiftUITests/Pods-BookSearchAppSwiftUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,7 +118,6 @@
 				B3D2FA68CC5BA3E8E9D850BA /* Pods-BookSearchAppSwiftUITests.debug.xcconfig */,
 				FBC08429602738B78C9A4CDC /* Pods-BookSearchAppSwiftUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -151,6 +152,7 @@
 				B7AEA2792A28DADA009069C6 /* BookModel.swift */,
 				B7AEA27B2A28DCBF009069C6 /* BooksListView.swift */,
 				B7AEA27D2A28DCD4009069C6 /* FavoritesListView.swift */,
+				B7AEA2822A2A3219009069C6 /* BookDescriptionView.swift */,
 				B7AEA2802A29B9E9009069C6 /* Constants.swift */,
 				B7AEA2512A282665009069C6 /* Assets.xcassets */,
 				B7AEA2532A282665009069C6 /* Preview Content */,
@@ -427,6 +429,7 @@
 				B7AEA27A2A28DADA009069C6 /* BookModel.swift in Sources */,
 				B7AEA2812A29B9E9009069C6 /* Constants.swift in Sources */,
 				B7AEA24E2A282664009069C6 /* BookSearchAppSwiftUIApp.swift in Sources */,
+				B7AEA2832A2A3219009069C6 /* BookDescriptionView.swift in Sources */,
 				B7AEA27C2A28DCBF009069C6 /* BooksListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
