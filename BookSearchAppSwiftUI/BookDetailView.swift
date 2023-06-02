@@ -9,6 +9,9 @@ import SwiftUI
 
 struct BookDetailView: View {
     
+    // UI Style
+    let textPadding: EdgeInsets = EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0)
+    
     var bookModel: BookModel
     
     var body: some View {
@@ -27,13 +30,24 @@ struct BookDetailView: View {
                         Image(systemName: "star")
                     }
                     .frame(maxWidth: geometry.size.height, maxHeight: .infinity)
-                    .background(Color.red)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 6)
+                            .stroke(Color.gray, lineWidth: 2)
+                    )
+                    .cornerRadius(6) // ImageにもRadiusをつける
                 }
-                VStack {
+                VStack(alignment: .leading) {
                     Text(self.bookModel.bookTitle)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                        .font(Font.system(size: 17))
+                        .bold()
+                        .padding(self.textPadding)
+                        .lineLimit(2)
                     Text(self.bookModel.authorName)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                        .font(Font.system(size: 17))
+                        .padding(self.textPadding)
+                        .lineLimit(1)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 Spacer()
