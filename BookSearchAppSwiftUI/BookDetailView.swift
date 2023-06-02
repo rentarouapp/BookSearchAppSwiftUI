@@ -16,7 +16,6 @@ struct BookDetailView: View {
             HStack(alignment: .center, spacing: 0) {
                 Spacer()
                     .frame(maxWidth: 16, maxHeight: .infinity)
-                    .background(Color.blue)
                 if let url = URL(string: self.bookModel.thumbImageUrl) {
                     AsyncImage(url: url) { image in
                         image
@@ -39,7 +38,6 @@ struct BookDetailView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 Spacer()
                     .frame(maxWidth: 16, maxHeight: .infinity)
-                    .background(Color.blue)
             }
             .frame(width: .infinity, height: 120)
         }

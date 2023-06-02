@@ -9,6 +9,9 @@ import SwiftUI
 
 struct BooksListView: View {
     
+    // UI Style
+    private let rowInsets: EdgeInsets = EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)
+    
     @State private var searchText: String = ""
     
     var books: [BookModel] = [
@@ -22,7 +25,9 @@ struct BooksListView: View {
             VStack(spacing: 10) {
                 List(books) { book in
                     BookDetailView(bookModel: book)
+                        .listRowInsets(rowInsets)
                 }
+                .listStyle(.plain)
             }
             .navigationTitle("本を探す")
             .navigationBarTitleDisplayMode(.inline)
