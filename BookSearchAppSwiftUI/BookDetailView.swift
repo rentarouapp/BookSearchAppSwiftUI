@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BookDetailView: View {
+    
     var bookModel: BookModel
     
     var body: some View {
@@ -49,8 +50,8 @@ struct BookDetailView: View {
 struct BookDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            BookDetailView(bookModel: BookModel(bookTitle: Constants.title_1, authorName: Constants.author_1, thumbImageUrl: Constants.thumbUrl_1))
-            BookDetailView(bookModel: BookModel(bookTitle: Constants.title_2, authorName: Constants.author_2, thumbImageUrl: Constants.thumbUrl_2))
-        }.previewLayout(.sizeThatFits)
+            BookDetailView(bookModel: BookModel(id: 1, bookTitle: Constants.title_1, authorName: Constants.author_1, thumbImageUrl: Constants.thumbUrl_1))
+        }
+        .previewLayout(.sizeThatFits)
     }
 }

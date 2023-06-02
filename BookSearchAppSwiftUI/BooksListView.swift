@@ -11,20 +11,23 @@ struct BooksListView: View {
     
     @State private var searchText: String = ""
     
+    var books: [BookModel] = [
+        BookModel(id: 1, bookTitle: Constants.title_1, authorName: Constants.author_1, thumbImageUrl: Constants.thumbUrl_1),
+        BookModel(id: 2, bookTitle: Constants.title_2, authorName: Constants.author_2, thumbImageUrl: Constants.thumbUrl_2),
+        BookModel(id: 3, bookTitle: Constants.title_3, authorName: Constants.author_3, thumbImageUrl: Constants.thumbUrl_3)
+    ]
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 10) {
-                Text("Books List")
-                    .font(.system(size: 38).bold())
-                    .foregroundColor(.primary)
-                Text("素晴らしい本たち")
-                    .font(.system(size: 20))
-                    .foregroundColor(.secondary)
+                List(books) { book in
+                    BookDetailView(bookModel: book)
+                }
             }
             .navigationTitle("本を探す")
             .navigationBarTitleDisplayMode(.inline)
+            .searchable(text: $searchText)
         }
-        .searchable(text: $searchText)
     }
 }
 
