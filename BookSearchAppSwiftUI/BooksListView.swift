@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct BooksListView: View {
+    
+    @State private var searchText: String = ""
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 10) {
@@ -21,6 +24,7 @@ struct BooksListView: View {
             .navigationTitle("本を探す")
             .navigationBarTitleDisplayMode(.inline)
         }
+        .searchable(text: $searchText)
     }
 }
 
