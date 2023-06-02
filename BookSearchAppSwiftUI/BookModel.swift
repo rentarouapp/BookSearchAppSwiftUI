@@ -8,7 +8,7 @@
 import Foundation
 
 struct BookModel: Identifiable {
-    var id: ObjectIdentifier
+    var id = 0
     var bookTitle: String
     var authorName: String
     var thumbImageUrl: String
