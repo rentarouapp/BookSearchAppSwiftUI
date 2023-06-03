@@ -24,12 +24,12 @@ struct BookDetailView: View {
                         image
                             .resizable()
                             .scaledToFill()
-                            .frame(maxWidth: geometry.size.height, maxHeight: .infinity)
+                            .frame(maxWidth: 100, maxHeight: 100)
                             .clipped() // 切り取る
                     } placeholder: {
                         Image(systemName: "star")
                     }
-                    .frame(maxWidth: geometry.size.height, maxHeight: .infinity)
+                    .frame(maxWidth: 100, maxHeight: 100)
                     .overlay(
                         RoundedRectangle(cornerRadius: 6)
                             .stroke(Color.gray, lineWidth: 2)
