@@ -9,6 +9,16 @@ import Foundation
 
 class Constants {
     
+    // タイトル
+    public static let title: String = "タイトル"
+    // 著者
+    public static let author: String = "著者"
+    // 発刊年月日
+    public static let releasedDate: String = "発刊年月日"
+    // 画像なし
+    public static let noImageIcon: String = "no_image"
+    
+    // テスト
     public static let title_1: String = "スティーブ・ジョブズ捕物帖"
     public static let title_2: String = "クック・クッキング"
     public static let title_3: String = "かもめのジョナサン"
