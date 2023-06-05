@@ -24,17 +24,25 @@ struct BookDetailView: View {
                         image
                             .resizable()
                             .scaledToFill()
-                            .frame(maxWidth: 100, maxHeight: 100)
+                            .frame(width: 100, height: 100)
                             .clipped() // 切り取る
                     } placeholder: {
-                        Image(systemName: "star")
+                        Image(Constants.noImageIcon)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 100, height: 100)
                     }
-                    .frame(maxWidth: 100, maxHeight: 100)
+                    .frame(width: 100, height: 100)
                     .overlay(
                         RoundedRectangle(cornerRadius: 6)
                             .stroke(Color.gray, lineWidth: 2)
                     )
                     .cornerRadius(6) // ImageにもRadiusをつける
+                } else {
+                    Image(Constants.noImageIcon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
                 }
                 VStack(alignment: .leading) {
                     Text(self.bookModel.bookTitle)
