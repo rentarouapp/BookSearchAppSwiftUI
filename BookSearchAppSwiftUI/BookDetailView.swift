@@ -17,8 +17,6 @@ struct BookDetailView: View {
     var body: some View {
         GeometryReader { geometry in
             HStack(alignment: .center, spacing: 0) {
-                Spacer()
-                    .frame(maxWidth: 16, maxHeight: .infinity)
                 if let url = URL(string: self.bookModel.thumbImageUrl) {
                     AsyncImage(url: url) { image in
                         image
@@ -59,8 +57,6 @@ struct BookDetailView: View {
                 }
                 .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 10))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                Spacer()
-                    .frame(maxWidth: 16, maxHeight: .infinity)
             }
             .frame(width: .infinity, height: 120)
         }

@@ -22,13 +22,13 @@ struct BooksListView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 10) {
-                List(books) { book in
+            List(books) { book in
+                NavigationLink(destination: BookDescriptionView(bookModel: book)) {
                     BookDetailView(bookModel: book)
                         .listRowInsets(rowInsets)
                 }
-                .listStyle(.plain)
             }
+            .listStyle(.plain)
             .navigationTitle("本を探す")
             .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $searchText)
