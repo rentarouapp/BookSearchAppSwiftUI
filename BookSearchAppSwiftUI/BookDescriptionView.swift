@@ -20,7 +20,7 @@ struct BookDescriptionView: View {
     private let descriptionFontSize: CGFloat = 15
     
     // UI Style
-    let viewInset: EdgeInsets = EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
+    let viewInset: EdgeInsets = EdgeInsets(top: 0, leading: 16, bottom: 16, trailing: 16)
     let textPadding: EdgeInsets = EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0)
     let descriptionPadding: EdgeInsets = EdgeInsets(top: 2, leading: 6, bottom: 6, trailing: 6)
     
@@ -102,7 +102,7 @@ struct BookDescriptionView: View {
                             .lineLimit(nil)
                             .padding(self.descriptionPadding)
                     }
-                    VStack {
+                    VStack(spacing: 10) {
                         // ボタン2つ
                         Button(action: {
                             print("push add favorite")
