@@ -49,6 +49,7 @@ struct BookDetailView: View {
                         .padding(self.textPadding)
                         .lineLimit(1)
                 }
+                .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 10))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 Spacer()
                     .frame(maxWidth: 16, maxHeight: .infinity)
