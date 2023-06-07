@@ -14,7 +14,7 @@ struct BookSearchRepositories: Codable {
 }
 
 //Items内のデータ構造
-struct BookItem: Codable {
+struct BookItem: Codable, Identifiable {
     let id: String?
     let volumeInfo: VolumeInfo?
 }

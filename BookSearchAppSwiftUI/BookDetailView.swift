@@ -12,12 +12,12 @@ struct BookDetailView: View {
     // UI Style
     let textPadding: EdgeInsets = EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0)
     
-    var bookModel: BookModel
+    var bookItem: BookItem
     
     var body: some View {
         GeometryReader { geometry in
             HStack(alignment: .center, spacing: 0) {
-                if let url = URL(string: self.bookModel.thumbImageUrl) {
+                if let urlStr = self.bookItem.volumeInfo?.imageLinks?.smallThumbnail, let url = URL(string: urlStr) {
                     AsyncImage(url: url) { image in
                         image
                             .resizable()
@@ -43,13 +43,13 @@ struct BookDetailView: View {
                         .frame(width: 100, height: 100)
                 }
                 VStack(alignment: .leading) {
-                    Text(self.bookModel.bookTitle)
+                    Text(self.bookItem.volumeInfo?.title ?? "")
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                         .font(Font.system(size: 17))
                         .bold()
                         .padding(self.textPadding)
                         .lineLimit(2)
-                    Text(self.bookModel.authorName)
+                    Text(self.bookItem.volumeInfo?.authors?.first ?? "")
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                         .font(Font.system(size: 17))
                         .padding(self.textPadding)
@@ -67,7 +67,7 @@ struct BookDetailView: View {
 struct BookDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            BookDetailView(bookModel: BookModel(id: 1, bookTitle: Constants.title_1, authorName: Constants.author_1, thumbImageUrl: Constants.thumbUrl_1))
+            BookDetailView(bookItem: Constants.getSampleBookItem(mockPerson: .steve_jobs))
         }
         .previewLayout(.sizeThatFits)
     }

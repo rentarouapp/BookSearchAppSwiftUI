@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BookDescriptionView: View {
-    var bookModel: BookModel
+    var bookItem: BookItem
     
     // View Constants
     private let thumbnailHeight: CGFloat = 160
@@ -31,7 +31,7 @@ struct BookDescriptionView: View {
                     VStack(spacing: 20) {
                         HStack(spacing: 20) {
                             // サムネ、右3つのテキスト
-                            if let url = URL(string: self.bookModel.thumbImageUrl) {
+                            if let urlStr = bookItem.volumeInfo?.imageLinks?.smallThumbnail, let url = URL(string: urlStr) {
                                 AsyncImage(url: url) { image in
                                     image
                                         .resizable()
@@ -61,7 +61,7 @@ struct BookDescriptionView: View {
                                         .font(Font.system(size: self.titleFontSize))
                                         .frame(maxWidth: .infinity, maxHeight: self.titleTextHeight, alignment: .leading)
                                         .foregroundColor(Color.gray)
-                                    Text(self.bookModel.bookTitle)
+                                    Text(self.bookItem.volumeInfo?.title ?? "")
                                         .font(Font.system(size: self.contentFontSize)).bold()
                                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                                 }
@@ -71,7 +71,7 @@ struct BookDescriptionView: View {
                                         .font(Font.system(size: self.titleFontSize))
                                         .frame(maxWidth: .infinity, maxHeight: self.titleTextHeight, alignment: .leading)
                                         .foregroundColor(Color.gray)
-                                    Text(self.bookModel.authorName)
+                                    Text(self.bookItem.volumeInfo?.authors?.first ?? "")
                                         .font(Font.system(size: self.contentFontSize)).bold()
                                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                                 }
@@ -132,7 +132,7 @@ struct BookDescriptionView: View {
                 }
             }.padding(self.viewInset)
         }
-        .navigationTitle(self.bookModel.bookTitle)
+        .navigationTitle(self.bookItem.volumeInfo?.title ?? "")
             .navigationBarTitleDisplayMode(.inline)
     }
 }
@@ -140,8 +140,7 @@ struct BookDescriptionView: View {
 struct BookDescriptionView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            BookDescriptionView(bookModel: BookModel(id: 1, bookTitle: Constants.title_1, authorName: Constants.author_1, thumbImageUrl: Constants.thumbUrl_1))
-                .previewLayout(.sizeThatFits)
+            BookDescriptionView(bookItem: Constants.getSampleBookItem(mockPerson: .steve_jobs))
         }
     }
 }

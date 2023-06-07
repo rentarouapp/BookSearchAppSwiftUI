@@ -17,8 +17,12 @@ final class BookListViewModel: ObservableObject {
     
     private var cancellable = Set<AnyCancellable>()
     
-    init(_ searchWord: String) {
-        self.fetchSearchRepositories(searchWord: searchWord)
+    init(_ searchWord: String? = nil) {
+        guard let _searchWord = searchWord, !_searchWord.isEmpty else {
+            self.repositories = .init(items: [])
+            return
+        }
+        self.fetchSearchRepositories(searchWord: _searchWord)
     }
     
     private func fetchSearchRepositories(searchWord: String) {

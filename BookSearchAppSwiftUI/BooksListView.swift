@@ -9,22 +9,28 @@ import SwiftUI
 
 struct BooksListView: View {
     
+    // Repositories
+    private var bookListViewModel = BookListViewModel()
+    
     // UI Style
     private let rowInsets: EdgeInsets = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
     
     @State private var searchText: String = ""
     
-    var books: [BookModel] = [
-        BookModel(id: 1, bookTitle: Constants.title_1, authorName: Constants.author_1, thumbImageUrl: Constants.thumbUrl_1),
-        BookModel(id: 2, bookTitle: Constants.title_2, authorName: Constants.author_2, thumbImageUrl: Constants.thumbUrl_2),
-        BookModel(id: 3, bookTitle: Constants.title_3, authorName: Constants.author_3, thumbImageUrl: Constants.thumbUrl_3)
-    ]
-    
     var body: some View {
+        
+        // Mock
+        let books: [BookItem] = [
+            Constants.getSampleBookItem(mockPerson: .steve_jobs),
+            Constants.getSampleBookItem(mockPerson: .tim_cook),
+            Constants.getSampleBookItem(mockPerson: .jony_ive)
+        ]
+        //let books: [BookItem] = self.bookListViewModel.repositories.items ?? []
+        
         NavigationStack {
             List(books) { book in
-                NavigationLink(destination: BookDescriptionView(bookModel: book)) {
-                    BookDetailView(bookModel: book)
+                NavigationLink(destination: BookDescriptionView(bookItem: book)) {
+                    BookDetailView(bookItem: book)
                         .listRowInsets(rowInsets)
                 }
             }
