@@ -10,6 +10,8 @@
 		85C83A5995E702A4793B398C /* Pods_BookSearchAppSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C29BD669B6BE061443266B0D /* Pods_BookSearchAppSwiftUI.framework */; };
 		B11C8CDB188DFA4970267F29 /* Pods_BookSearchAppSwiftUI_BookSearchAppSwiftUIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F6A8D83D1BA9DBB1B5CF1A /* Pods_BookSearchAppSwiftUI_BookSearchAppSwiftUIUITests.framework */; };
 		B43F072A4760AB456E674759 /* Pods_BookSearchAppSwiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950A1C6FC3399023FF604DD3 /* Pods_BookSearchAppSwiftUITests.framework */; };
+		B78B72A52A3095F100CF869B /* BookListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78B72A42A3095F100CF869B /* BookListViewModel.swift */; };
+		B78B72A72A30965C00CF869B /* BookSearchRepositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78B72A62A30965C00CF869B /* BookSearchRepositories.swift */; };
 		B7AEA24E2A282664009069C6 /* BookSearchAppSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AEA24D2A282664009069C6 /* BookSearchAppSwiftUIApp.swift */; };
 		B7AEA2502A282664009069C6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AEA24F2A282664009069C6 /* ContentView.swift */; };
 		B7AEA2522A282665009069C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7AEA2512A282665009069C6 /* Assets.xcassets */; };
@@ -50,6 +52,8 @@
 		950A1C6FC3399023FF604DD3 /* Pods_BookSearchAppSwiftUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookSearchAppSwiftUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C11377B65374F3A403E340 /* Pods-BookSearchAppSwiftUI-BookSearchAppSwiftUIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookSearchAppSwiftUI-BookSearchAppSwiftUIUITests.release.xcconfig"; path = "Target Support Files/Pods-BookSearchAppSwiftUI-BookSearchAppSwiftUIUITests/Pods-BookSearchAppSwiftUI-BookSearchAppSwiftUIUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B3D2FA68CC5BA3E8E9D850BA /* Pods-BookSearchAppSwiftUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookSearchAppSwiftUITests.debug.xcconfig"; path = "Target Support Files/Pods-BookSearchAppSwiftUITests/Pods-BookSearchAppSwiftUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B78B72A42A3095F100CF869B /* BookListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewModel.swift; sourceTree = "<group>"; };
+		B78B72A62A30965C00CF869B /* BookSearchRepositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSearchRepositories.swift; sourceTree = "<group>"; };
 		B7AEA24A2A282664009069C6 /* BookSearchAppSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookSearchAppSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7AEA24D2A282664009069C6 /* BookSearchAppSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSearchAppSwiftUIApp.swift; sourceTree = "<group>"; };
 		B7AEA24F2A282664009069C6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 				B7AEA27D2A28DCD4009069C6 /* FavoritesListView.swift */,
 				B7AEA2822A2A3219009069C6 /* BookDescriptionView.swift */,
 				B7AEA2802A29B9E9009069C6 /* Constants.swift */,
+				B78B72A42A3095F100CF869B /* BookListViewModel.swift */,
+				B78B72A62A30965C00CF869B /* BookSearchRepositories.swift */,
 				B7AEA2512A282665009069C6 /* Assets.xcassets */,
 				B7AEA2532A282665009069C6 /* Preview Content */,
 			);
@@ -428,6 +434,8 @@
 				B7AEA27E2A28DCD4009069C6 /* FavoritesListView.swift in Sources */,
 				B7AEA27A2A28DADA009069C6 /* BookModel.swift in Sources */,
 				B7AEA2812A29B9E9009069C6 /* Constants.swift in Sources */,
+				B78B72A52A3095F100CF869B /* BookListViewModel.swift in Sources */,
+				B78B72A72A30965C00CF869B /* BookSearchRepositories.swift in Sources */,
 				B7AEA24E2A282664009069C6 /* BookSearchAppSwiftUIApp.swift in Sources */,
 				B7AEA2832A2A3219009069C6 /* BookDescriptionView.swift in Sources */,
 				B7AEA27C2A28DCBF009069C6 /* BooksListView.swift in Sources */,
