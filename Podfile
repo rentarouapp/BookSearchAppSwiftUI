@@ -7,6 +7,9 @@ target 'BookSearchAppSwiftUI' do
 
   # Pods for BookSearchAppSwiftUI
   pod 'Alamofire'
+  pod 'Realm'
+  pod 'RealmSwift'
+  pod 'PKHUD'
 
   target 'BookSearchAppSwiftUITests' do
     inherit! :search_paths
