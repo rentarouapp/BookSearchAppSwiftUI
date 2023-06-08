@@ -4,43 +4,47 @@
 //
 //  Created by 上條蓮太朗 on 2023/06/07.
 //
-// API通信
 
 import Foundation
-import Alamofire
 import Combine
 
-final class BookListViewModel: ObservableObject {
+final class BookListViewModel: NSObject, ObservableObject {
     @Published var repositories: BookSearchRepositories = .init(items: [])
     
-    private var url: String = "https://www.googleapis.com/books/v1/volumes?q="
+    private let apiService = APIService()
+    private let errorSubject = PassthroughSubject<APIServiceError, Never>()
+    private let onBooksSearchSubject = PassthroughSubject<BooksSearchRequest, Never>()
+    private var cancellables: [AnyCancellable] = []
     
-    private var cancellable = Set<AnyCancellable>()
-    
-    init(_ searchWord: String? = nil) {
-        guard let _searchWord = searchWord, !_searchWord.isEmpty else {
-            self.repositories = .init(items: [])
-            return
-        }
-        self.fetchSearchRepositories(searchWord: _searchWord)
+    override init() {
+        super.init()
+        self.bind()
     }
     
-    private func fetchSearchRepositories(searchWord: String) {
-        // リクエストのURLを作成
-        let requestURL = self.url + searchWord
-        
-        AF.request(requestURL, method: .get).publishDecodable(type: BookSearchRepositories.self)
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] response in
-                guard let self else { return }
-                switch response.result {
-                case .success(let response):
-                    self.repositories = response
-                case .failure:
-                    self.repositories = .init(items: [])
+    private func bind() {
+        self.cancellables += [
+            self.onBooksSearchSubject
+                .flatMap { [apiService] (request) in
+                    apiService.request(with: BooksSearchRequest(searchWord: request.searchWord))
+                        .catch { [weak self] error -> Empty<BookSearchRepositories, Never> in
+                            self?.errorSubject.send(error)
+                            return .init()
+                        }
                 }
-            }
-            .store(in: &cancellable)
+                .sink(receiveValue: { [weak self] (response) in
+                    guard let self = self else { return }
+                    self.repositories = response
+                }),
+            errorSubject
+                .sink(receiveValue: { [weak self] (error) in
+                    guard let self = self else { return }
+                    print("API Error")
+                })
+        ]
+    }
+    
+    func resumeSearch(searchWord: String) {
+        self.onBooksSearchSubject.send(BooksSearchRequest(searchWord: searchWord))
     }
     
 }
