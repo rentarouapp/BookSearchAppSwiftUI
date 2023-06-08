@@ -1,15 +1,14 @@
 //
-//  BookSearchRepositories.swift
+//  BooksSearchResponceModel.swift
 //  BookSearchAppSwiftUI
 //
-//  Created by 上條蓮太朗 on 2023/06/07.
+//  Created by 上條蓮太朗 on 2023/06/08.
 //
-// モデル
 
 import Foundation
 
 //全てのデータの構造
-/*struct BookSearchRepositories: Codable {
+struct BookSearchRepositories: Codable {
     let items: [BookItem]?
 }
 
@@ -33,4 +32,5 @@ struct VolumeInfo: Codable {
 struct ImageLinks: Codable {
     let thumbnail: String?
     let smallThumbnail: String?
-}*/
+}
+
