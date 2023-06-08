@@ -25,6 +25,8 @@
 		B7AEA2812A29B9E9009069C6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AEA2802A29B9E9009069C6 /* Constants.swift */; };
 		B7AEA2832A2A3219009069C6 /* BookDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AEA2822A2A3219009069C6 /* BookDescriptionView.swift */; };
 		B7D981582A31FC5700EF725F /* BooksSearchResponceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D981572A31FC5700EF725F /* BooksSearchResponceModel.swift */; };
+		B7D9815A2A31FDE300EF725F /* APIPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D981592A31FDE300EF725F /* APIPublisher.swift */; };
+		B7D9815C2A31FEF100EF725F /* APISubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D9815B2A31FEF100EF725F /* APISubscriber.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		B7AEA2802A29B9E9009069C6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B7AEA2822A2A3219009069C6 /* BookDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDescriptionView.swift; sourceTree = "<group>"; };
 		B7D981572A31FC5700EF725F /* BooksSearchResponceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksSearchResponceModel.swift; sourceTree = "<group>"; };
+		B7D981592A31FDE300EF725F /* APIPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPublisher.swift; sourceTree = "<group>"; };
+		B7D9815B2A31FEF100EF725F /* APISubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISubscriber.swift; sourceTree = "<group>"; };
 		C29BD669B6BE061443266B0D /* Pods_BookSearchAppSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookSearchAppSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBC08429602738B78C9A4CDC /* Pods-BookSearchAppSwiftUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookSearchAppSwiftUITests.release.xcconfig"; path = "Target Support Files/Pods-BookSearchAppSwiftUITests/Pods-BookSearchAppSwiftUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,6 +164,8 @@
 				B7AEA2802A29B9E9009069C6 /* Constants.swift */,
 				B78B72A42A3095F100CF869B /* BookListViewModel.swift */,
 				B7D981572A31FC5700EF725F /* BooksSearchResponceModel.swift */,
+				B7D981592A31FDE300EF725F /* APIPublisher.swift */,
+				B7D9815B2A31FEF100EF725F /* APISubscriber.swift */,
 				B7AEA2512A282665009069C6 /* Assets.xcassets */,
 				B7AEA2532A282665009069C6 /* Preview Content */,
 			);
@@ -429,8 +435,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7D9815C2A31FEF100EF725F /* APISubscriber.swift in Sources */,
 				B7AEA2502A282664009069C6 /* ContentView.swift in Sources */,
 				B7AEA2782A28DA2E009069C6 /* BookDetailView.swift in Sources */,
+				B7D9815A2A31FDE300EF725F /* APIPublisher.swift in Sources */,
 				B7AEA27E2A28DCD4009069C6 /* FavoritesListView.swift in Sources */,
 				B7AEA27A2A28DADA009069C6 /* BookModel.swift in Sources */,
 				B7AEA2812A29B9E9009069C6 /* Constants.swift in Sources */,
