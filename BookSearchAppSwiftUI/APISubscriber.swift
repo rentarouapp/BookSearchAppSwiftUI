@@ -15,7 +15,7 @@ protocol APIRequestType {
 }
 
 struct BooksSearchRequest: APIRequestType {
-    typealias Response = BookSearchRepositories
+    typealias Response = BooksSearchResponse
     
     var path: String {
         return "volumes?q=\(self.searchWord)"

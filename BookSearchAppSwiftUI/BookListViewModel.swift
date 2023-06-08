@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 final class BookListViewModel: NSObject, ObservableObject {
-    @Published var repositories: BookSearchRepositories = .init(items: [])
+    @Published var booksSearchResponse: BooksSearchResponse = .init(items: [])
     
     private let apiService = APIService()
     private let errorSubject = PassthroughSubject<APIServiceError, Never>()
@@ -26,14 +26,14 @@ final class BookListViewModel: NSObject, ObservableObject {
             self.onBooksSearchSubject
                 .flatMap { [apiService] (request) in
                     apiService.request(with: BooksSearchRequest(searchWord: request.searchWord))
-                        .catch { [weak self] error -> Empty<BookSearchRepositories, Never> in
+                        .catch { [weak self] error -> Empty<BooksSearchResponse, Never> in
                             self?.errorSubject.send(error)
                             return .init()
                         }
                 }
                 .sink(receiveValue: { [weak self] (response) in
                     guard let self = self else { return }
-                    self.repositories = response
+                    self.booksSearchResponse = response
                 }),
             errorSubject
                 .sink(receiveValue: { [weak self] (error) in
@@ -43,6 +43,7 @@ final class BookListViewModel: NSObject, ObservableObject {
         ]
     }
     
+    // キーボードの検索ボタンが押されたときにView側から呼び出す
     func resumeSearch(searchWord: String) {
         self.onBooksSearchSubject.send(BooksSearchRequest(searchWord: searchWord))
     }

@@ -8,7 +8,7 @@
 import Foundation
 
 //全てのデータの構造
-struct BookSearchRepositories: Codable {
+struct BooksSearchResponse: Codable {
     let items: [BookItem]?
 }
 
