@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BooksListView: View {
     
-    // Repositories
+    // ViewModel
     private var bookListViewModel = BookListViewModel()
     
     // UI Style
@@ -38,6 +38,16 @@ struct BooksListView: View {
             .navigationTitle("本を探す")
             .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $searchText)
+            .onChange(of: searchText) { newValue in
+                // 検索バーの文字列が更新された
+                if newValue == "" {
+                    // クリアボタンがおされた
+                    print("クリアボタン押された")
+                }
+            }
+            .onSubmit(of: .search) {
+                // 決定キー押された
+            }
         }
     }
 }
