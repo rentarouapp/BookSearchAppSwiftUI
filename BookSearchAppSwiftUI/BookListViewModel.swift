@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import PKHUD
 
 final class BookListViewModel: NSObject, ObservableObject {
     @Published var booksSearchResponse: BooksSearchResponse = .init(items: [])
@@ -36,8 +37,7 @@ final class BookListViewModel: NSObject, ObservableObject {
                     self.booksSearchResponse = response
                 }),
             errorSubject
-                .sink(receiveValue: { [weak self] (error) in
-                    guard let self = self else { return }
+                .sink(receiveValue: { (error) in
                     print("API Error")
                 })
         ]
