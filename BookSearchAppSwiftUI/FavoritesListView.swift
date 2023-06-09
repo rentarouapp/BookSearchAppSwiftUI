@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct FavoritesListView: View {
+    
+    // ViewModel
+    private var bookListViewModel = BookListViewModel()
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 10) {
@@ -24,6 +28,8 @@ struct FavoritesListView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         print("編集タップ")
+                        // テストで検索を実行
+                        self.bookListViewModel.resumeSearch(searchWord: "あああ")
                     }) {
                         Text("編集")
                     }
