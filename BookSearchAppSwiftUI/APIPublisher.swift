@@ -23,10 +23,12 @@ final class APIService: APIServiceType {
         guard let pathURL = URL(string: request.path, relativeTo: URL(string: self.baseURLString)) else {
             return Fail(error: APIServiceError.invalidURL).eraseToAnyPublisher()
         }
-        guard let urlComponents = URLComponents(url: pathURL, resolvingAgainstBaseURL: true) else {
+        guard var urlComponents = URLComponents(url: pathURL, resolvingAgainstBaseURL: true) else {
             return Fail(error: APIServiceError.invalidURL).eraseToAnyPublisher()
         }
         // ここでurlComponentsに対してqueryのSettingもいける
+        urlComponents.queryItems = request.queryItems
+        
         guard let _url = urlComponents.url else {
             return Fail(error: APIServiceError.invalidURL).eraseToAnyPublisher()
         }
@@ -38,6 +40,7 @@ final class APIService: APIServiceType {
         
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
+        print("DEBUG_URL_CHECK: \(request.url?.absoluteString ?? "none_url")")
         return URLSession.shared.dataTaskPublisher(for: request)
             .map { data, urlResponse in data }
             .mapError { _ in APIServiceError.responseError }
