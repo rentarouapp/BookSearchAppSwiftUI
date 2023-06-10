@@ -41,7 +41,7 @@ struct BookDescriptionView: View {
                                 } placeholder: {
                                     Image(Constants.noImageIcon)
                                         .resizable()
-                                        .scaledToFit()
+                                        .scaledToFill()
                                         .frame(width: geometry.size.width / 3, height: self.thumbnailHeight)
                                 }
                                 .frame(width: geometry.size.width / 3, height: self.thumbnailHeight)
@@ -53,8 +53,13 @@ struct BookDescriptionView: View {
                             } else {
                                 Image(Constants.noImageIcon)
                                     .resizable()
-                                    .scaledToFit()
+                                    .scaledToFill()
                                     .frame(width: geometry.size.width / 3, height: self.thumbnailHeight)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 6)
+                                            .stroke(Color.gray, lineWidth: 2)
+                                    )
+                                    .cornerRadius(6) // ImageにもRadiusをつける
                             }
                             VStack(spacing: 0) {
                                 VStack(spacing: 0) {
