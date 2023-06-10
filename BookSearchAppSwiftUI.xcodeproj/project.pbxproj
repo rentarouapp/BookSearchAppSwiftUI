@@ -30,7 +30,6 @@
 		B7D981612A344CB300EF725F /* PKHUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D981602A344CB300EF725F /* PKHUDView.swift */; };
 		B7D981642A344CE300EF725F /* PKHUDModifire.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D981632A344CE300EF725F /* PKHUDModifire.swift */; };
 		B7D981672A344D0300EF725F /* PKHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D981662A344D0300EF725F /* PKHUD.swift */; };
-		B7D9816A2A34616500EF725F /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D981692A34616500EF725F /* RealmManager.swift */; };
 		B7D9816F2A34A20F00EF725F /* RealmBookData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D9816E2A34A20F00EF725F /* RealmBookData.swift */; };
 		B7D981712A34A2E000EF725F /* RealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D981702A34A2E000EF725F /* RealmViewModel.swift */; };
 		B7D981732A34A31400EF725F /* RealmBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D981722A34A31400EF725F /* RealmBookModel.swift */; };
@@ -84,7 +83,6 @@
 		B7D981602A344CB300EF725F /* PKHUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKHUDView.swift; sourceTree = "<group>"; };
 		B7D981632A344CE300EF725F /* PKHUDModifire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKHUDModifire.swift; sourceTree = "<group>"; };
 		B7D981662A344D0300EF725F /* PKHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKHUD.swift; sourceTree = "<group>"; };
-		B7D981692A34616500EF725F /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		B7D9816D2A3466DF00EF725F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7D9816E2A34A20F00EF725F /* RealmBookData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBookData.swift; sourceTree = "<group>"; };
 		B7D981702A34A2E000EF725F /* RealmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmViewModel.swift; sourceTree = "<group>"; };
@@ -228,7 +226,6 @@
 		B7D981682A34614E00EF725F /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				B7D981692A34616500EF725F /* RealmManager.swift */,
 				B7D9816E2A34A20F00EF725F /* RealmBookData.swift */,
 				B7D981702A34A2E000EF725F /* RealmViewModel.swift */,
 				B7D981722A34A31400EF725F /* RealmBookModel.swift */,
@@ -481,7 +478,6 @@
 				B7D981732A34A31400EF725F /* RealmBookModel.swift in Sources */,
 				B7AEA2782A28DA2E009069C6 /* BookDetailView.swift in Sources */,
 				B7D9815A2A31FDE300EF725F /* APIPublisher.swift in Sources */,
-				B7D9816A2A34616500EF725F /* RealmManager.swift in Sources */,
 				B7D981612A344CB300EF725F /* PKHUDView.swift in Sources */,
 				B7AEA27E2A28DCD4009069C6 /* FavoritesListView.swift in Sources */,
 				B7D9816F2A34A20F00EF725F /* RealmBookData.swift in Sources */,
