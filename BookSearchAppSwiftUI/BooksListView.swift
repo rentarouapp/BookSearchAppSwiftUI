@@ -10,8 +10,7 @@ import SwiftUI
 struct BooksListView: View {
     
     // ViewModel
-    @StateObject private var bookListViewModel = BookListViewModel()
-    
+    @ObservedObject private var bookListViewModel = BookListViewModel()
     @State private var searchText: String = ""
     @FocusState var focus: Bool
     
@@ -62,6 +61,7 @@ struct BooksListView: View {
             }
         }
         .focused(self.$focus)
+        .PKHUD(isPresented: $bookListViewModel.isFetching, HUDContent: .progress, delay: 0.0)
     }
 }
 
