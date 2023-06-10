@@ -19,6 +19,9 @@ struct BookDescriptionView: View {
     
     private let descriptionFontSize: CGFloat = 15
     
+    // Realm
+    @EnvironmentObject var realmViewModel: RealmViewModel
+    
     // UI Style
     let viewInset: EdgeInsets = EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
     let textPadding: EdgeInsets = EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0)
@@ -77,7 +80,7 @@ struct BookDescriptionView: View {
                                         .font(Font.system(size: self.titleFontSize))
                                         .frame(maxWidth: .infinity, maxHeight: self.titleTextHeight, alignment: .leading)
                                         .foregroundColor(Color.gray)
-                                    Text(self.bookItem.volumeInfo?.authors?.first ?? "作者なし")
+                                    Text(self.bookItem.volumeInfo?.authors?.first ?? Constants.nonAuthor)
                                         .font(Font.system(size: self.contentFontSize)).bold()
                                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                                 }
@@ -87,7 +90,7 @@ struct BookDescriptionView: View {
                                         .font(Font.system(size: self.titleFontSize))
                                         .frame(maxWidth: .infinity, maxHeight: self.titleTextHeight, alignment: .leading)
                                         .foregroundColor(Color.gray)
-                                    Text(self.bookItem.volumeInfo?.publishedDate ?? "発刊年月日なし")
+                                    Text(self.bookItem.volumeInfo?.publishedDate ?? Constants.nonPublishedDate)
                                         .font(Font.system(size: self.contentFontSize)).bold()
                                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                                 }
@@ -103,7 +106,7 @@ struct BookDescriptionView: View {
                                 .font(Font.system(size: self.titleFontSize))
                                 .frame(maxWidth: .infinity, maxHeight: self.titleTextHeight, alignment: .leading)
                                 .foregroundColor(Color.gray)
-                            Text(self.bookItem.volumeInfo?.description ?? "※この本に関しての説明はありません")
+                            Text(self.bookItem.volumeInfo?.description ?? Constants.nonDescription)
                                 .font(Font.system(size: self.descriptionFontSize))
                                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                                 .lineLimit(nil)
@@ -112,7 +115,8 @@ struct BookDescriptionView: View {
                         VStack(spacing: 10) {
                             // ボタン2つ
                             Button(action: {
-                                print("push add favorite")
+                                // お気に入りとしてRealmに保存する
+                                self.realmViewModel.addRealmBookData(bookItem: self.bookItem)
                             }, label: {
                                 Image(systemName: Constants.star)
                                 Text(Constants.addFavorite)
@@ -150,6 +154,7 @@ struct BookDescriptionView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             BookDescriptionView(bookItem: Constants.getSampleBookItem(mockPerson: .steve_jobs))
+                .environmentObject(RealmViewModel())
         }
     }
 }

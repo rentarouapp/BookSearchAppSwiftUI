@@ -14,6 +14,9 @@ struct BooksListView: View {
     @State private var searchText: String = ""
     @FocusState var focus: Bool
     
+    // Realm
+    @EnvironmentObject var realmViewModel: RealmViewModel
+    
     // UI Style
     private let rowInsets: EdgeInsets = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
     // test
@@ -31,7 +34,7 @@ struct BooksListView: View {
         NavigationStack {
             if books.isEmpty {
                 BookSearchEmptyView()
-                    .navigationTitle("本を探す")
+                    .navigationTitle(Constants.searchBook)
                     .navigationBarTitleDisplayMode(.inline)
             } else {
                 List(books) { book in
@@ -44,16 +47,16 @@ struct BooksListView: View {
                         }
                         // NavigationLinkの右の矢印を消す
                         .opacity(0)
-                        BookDetailView(bookItem: book, isFavorite: true)
+                        BookDetailView(bookItem: book, isFavorite: self.realmViewModel.isFavorite(id: book.id ?? ""))
                             .listRowInsets(rowInsets)
                     }
                 }
                 .listStyle(.plain)
-                .navigationTitle("本を探す")
+                .navigationTitle(Constants.searchBook)
                 .navigationBarTitleDisplayMode(.inline)
             }
         }
-        .searchable(text: $searchText, prompt: "タイトルや著者名を入力してね")
+        .searchable(text: $searchText, prompt: Constants.placeHolder)
         .onChange(of: searchText) { newValue in
             // 検索バーの文字列が更新された
             if newValue == "" {
@@ -77,5 +80,6 @@ struct BooksListView: View {
 struct BooksListView_Previews: PreviewProvider {
     static var previews: some View {
         BooksListView()
+            .environmentObject(RealmViewModel())
     }
 }

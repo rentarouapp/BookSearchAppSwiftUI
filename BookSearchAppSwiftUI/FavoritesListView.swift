@@ -12,26 +12,49 @@ struct FavoritesListView: View {
     // ViewModel
     private var bookListViewModel = BookListViewModel()
     
+    // Realm
+    @EnvironmentObject var realmViewModel: RealmViewModel
+    
+    // UI Style
+    private let rowInsets: EdgeInsets = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+    
     var body: some View {
+        
+        let books: [BookItem] = self.realmViewModel.booksFromData
+        
         NavigationStack {
-            VStack(spacing: 10) {
-                Text("Favorites List")
-                    .font(.system(size: 38).bold())
-                    .foregroundColor(.primary)
-                Text("お気に入りの本たち")
-                    .font(.system(size: 20))
-                    .foregroundColor(.secondary)
-            }
-            .navigationTitle("お気に入り")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        print("編集タップ")
-                        // テストで検索を実行
-                        self.bookListViewModel.resumeSearch(searchWord: "あああ")
-                    }) {
-                        Text("編集")
+            if books.isEmpty {
+                BookSearchEmptyView()
+                    .navigationTitle(Constants.favoriteList)
+                    .navigationBarTitleDisplayMode(.inline)
+            } else {
+                List(books) { book in
+                    ZStack {
+                        NavigationLink(destination:
+                                        BookDescriptionView(bookItem: book)
+                            .toolbarRole(.editor) // Backは非表示にする
+                        ) {
+                            EmptyView()
+                        }
+                        // NavigationLinkの右の矢印を消す
+                        .opacity(0)
+                        BookDetailView(bookItem: book, isFavorite: true)
+                            .listRowInsets(rowInsets)
+                    }
+                }
+                .listStyle(.plain)
+                .navigationTitle(Constants.favoriteList)
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: {
+                            print("編集タップ")
+                            // テストでRealmから読み出す
+                            print("realmCount: \(self.realmViewModel.model.items?.count ?? 0)")
+                            //self.bookListViewModel.resumeSearch(searchWord: "あああ")
+                        }) {
+                            Text("編集")
+                        }
                     }
                 }
             }
@@ -42,5 +65,6 @@ struct FavoritesListView: View {
 struct FavoritesListView_Previews: PreviewProvider {
     static var previews: some View {
         FavoritesListView()
+            .environmentObject(RealmViewModel())
     }
 }
