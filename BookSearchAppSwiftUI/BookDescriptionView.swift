@@ -118,7 +118,10 @@ struct BookDescriptionView: View {
                             .cornerRadius(6)
                             
                             Button(action: {
-                                print("push safari")
+                                if let urlStr = self.bookItem.volumeInfo?.infoLink,
+                                   let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url){
+                                    UIApplication.shared.open(url)
+                                }
                             }, label: {
                                 Image(systemName: Constants.safari)
                                 Text(Constants.openBrowser)
