@@ -41,6 +41,11 @@ struct BookDetailView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 100, height: 100)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 6)
+                                .stroke(Color.gray, lineWidth: 2)
+                        )
+                        .cornerRadius(6) // ImageにもRadiusをつける
                 }
                 VStack(alignment: .leading) {
                     Text(self.bookItem.volumeInfo?.title ?? "")

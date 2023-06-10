@@ -165,7 +165,6 @@
 		B7AEA24C2A282664009069C6 /* BookSearchAppSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				B7D9816D2A3466DF00EF725F /* Info.plist */,
 				B7AEA24D2A282664009069C6 /* BookSearchAppSwiftUIApp.swift */,
 				B7AEA24F2A282664009069C6 /* ContentView.swift */,
 				B7AEA2772A28DA2E009069C6 /* BookDetailView.swift */,
@@ -182,6 +181,7 @@
 				B7D981682A34614E00EF725F /* Database */,
 				B7D9815F2A344C8D00EF725F /* PKHUD */,
 				B7AEA2512A282665009069C6 /* Assets.xcassets */,
+				B7D9816D2A3466DF00EF725F /* Info.plist */,
 				B7AEA2532A282665009069C6 /* Preview Content */,
 			);
 			path = BookSearchAppSwiftUI;
