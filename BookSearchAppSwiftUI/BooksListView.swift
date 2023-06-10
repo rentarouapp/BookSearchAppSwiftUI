@@ -35,7 +35,10 @@ struct BooksListView: View {
                     .navigationBarTitleDisplayMode(.inline)
             } else {
                 List(books) { book in
-                    NavigationLink(destination: BookDescriptionView(bookItem: book)) {
+                    NavigationLink(destination:
+                                    BookDescriptionView(bookItem: book)
+                        .toolbarRole(.editor) // Backは非表示にする
+                    ) {
                         BookDetailView(bookItem: book)
                             .listRowInsets(rowInsets)
                     }

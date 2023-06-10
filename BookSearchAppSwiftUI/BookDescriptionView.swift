@@ -20,7 +20,7 @@ struct BookDescriptionView: View {
     private let descriptionFontSize: CGFloat = 15
     
     // UI Style
-    let viewInset: EdgeInsets = EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
+    let viewInset: EdgeInsets = EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
     let textPadding: EdgeInsets = EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0)
     let descriptionPadding: EdgeInsets = EdgeInsets(top: 2, leading: 6, bottom: 6, trailing: 6)
     
@@ -29,6 +29,7 @@ struct BookDescriptionView: View {
             GeometryReader { geometry in
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 20) {
+                        Spacer().frame(height: 16)
                         HStack(spacing: 20) {
                             // サムネ、右3つのテキスト
                             if let urlStr = bookItem.volumeInfo?.imageLinks?.smallThumbnail, let url = URL(string: urlStr) {
@@ -71,7 +72,7 @@ struct BookDescriptionView: View {
                                         .font(Font.system(size: self.titleFontSize))
                                         .frame(maxWidth: .infinity, maxHeight: self.titleTextHeight, alignment: .leading)
                                         .foregroundColor(Color.gray)
-                                    Text(self.bookItem.volumeInfo?.authors?.first ?? "")
+                                    Text(self.bookItem.volumeInfo?.authors?.first ?? "作者なし")
                                         .font(Font.system(size: self.contentFontSize)).bold()
                                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                                 }
@@ -81,7 +82,7 @@ struct BookDescriptionView: View {
                                         .font(Font.system(size: self.titleFontSize))
                                         .frame(maxWidth: .infinity, maxHeight: self.titleTextHeight, alignment: .leading)
                                         .foregroundColor(Color.gray)
-                                    Text("2023-06-05")
+                                    Text(self.bookItem.volumeInfo?.publishedDate ?? "発刊年月日なし")
                                         .font(Font.system(size: self.contentFontSize)).bold()
                                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                                 }
@@ -97,7 +98,7 @@ struct BookDescriptionView: View {
                                 .font(Font.system(size: self.titleFontSize))
                                 .frame(maxWidth: .infinity, maxHeight: self.titleTextHeight, alignment: .leading)
                                 .foregroundColor(Color.gray)
-                            Text(Constants.descriptionText)
+                            Text(self.bookItem.volumeInfo?.description ?? "※この本に関しての説明はありません")
                                 .font(Font.system(size: self.descriptionFontSize))
                                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                                 .lineLimit(nil)
@@ -127,7 +128,7 @@ struct BookDescriptionView: View {
                             .foregroundColor(Color.white)
                             .cornerRadius(6)
                         }
-                        
+                        Spacer().frame(height: 16)
                     }
                 }
             }.padding(self.viewInset)
