@@ -8,21 +8,6 @@
 import Foundation
 import RealmSwift
 
-class RealmBookData: Object {
-    @objc dynamic var bookId: String = ""
-    @objc dynamic var title: String = ""
-    @objc dynamic var authors: String = ""
-    @objc dynamic var smallImageUrl: String = ""
-    @objc dynamic var largeImageUrl: String = ""
-    @objc dynamic var infoUrl: String = ""
-    @objc dynamic var publishedDate: String = ""
-    @objc dynamic var textDescription: String = ""
-    // プライマリキー
-    override static func primaryKey() -> String? {
-        return "bookId"
-    }
-}
-
 class RealmManager {
     
     static let shared = RealmManager()
