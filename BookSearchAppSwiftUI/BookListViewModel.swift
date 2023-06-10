@@ -11,6 +11,7 @@ import PKHUD
 
 final class BookListViewModel: NSObject, ObservableObject {
     @Published var booksSearchResponse: BooksSearchResponse = .init(items: [])
+    @Published var isFetching: Bool = false
     
     private let apiService = APIService()
     private let errorSubject = PassthroughSubject<APIServiceError, Never>()
@@ -28,16 +29,20 @@ final class BookListViewModel: NSObject, ObservableObject {
                 .flatMap { [apiService] (request) in
                     apiService.request(with: BooksSearchRequest(searchWord: request.searchWord))
                         .catch { [weak self] error -> Empty<BooksSearchResponse, Never> in
-                            self?.errorSubject.send(error)
+                            if let `self` = self {
+                                self.errorSubject.send(error)
+                            }
                             return .init()
                         }
                 }
                 .sink(receiveValue: { [weak self] (response) in
                     guard let self = self else { return }
+                    self.isFetching = false
                     self.booksSearchResponse = response
                 }),
             errorSubject
                 .sink(receiveValue: { (error) in
+                    self.isFetching = false
                     print("API Error")
                 })
         ]
@@ -45,7 +50,13 @@ final class BookListViewModel: NSObject, ObservableObject {
     
     // キーボードの検索ボタンが押されたときにView側から呼び出す
     func resumeSearch(searchWord: String) {
+        self.isFetching = true
         self.onBooksSearchSubject.send(BooksSearchRequest(searchWord: searchWord))
+    }
+    
+    // 通信をキャンセルする
+    func cancel() {
+        self.cancellables.forEach { $0.cancel() }
     }
     
 }
