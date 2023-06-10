@@ -33,6 +33,18 @@ class Constants {
     // ブックマーク
     static let bookMark: String = "bookmark.fill"
     
+    // MARK: - 検索画面
+    static let searchBook: String = "本を探す"
+    static let placeHolder: String = "タイトルや著者名を入力してね"
+    
+    // MARK: - お気に入り
+    static let favoriteList: String = "お気に入り"
+    
+    // MARK: - 詳細画面
+    static let nonAuthor: String = "作者なし"
+    static let nonPublishedDate: String = "発刊年月日なし"
+    static let nonDescription: String = "※この本に関しての説明はありません"
+    
     // MARK: - EmpltyView
     // 探している人
     static let searchMan: String = "search-man"
