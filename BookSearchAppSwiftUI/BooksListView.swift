@@ -51,6 +51,7 @@ struct BooksListView: View {
             if newValue == "" {
                 // クリアボタンがおされた
                 self.focus = false
+                self.bookListViewModel.cancel()
             }
         }
         .onSubmit(of: .search) {

@@ -17,11 +17,6 @@ final class BookListViewModel: NSObject, ObservableObject {
     private let onBooksSearchSubject = PassthroughSubject<BooksSearchRequest, Never>()
     private var cancellables: [AnyCancellable] = []
     
-    override init() {
-        super.init()
-        self.bind()
-    }
-    
     private func bind() {
         self.cancellables += [
             self.onBooksSearchSubject
@@ -49,13 +44,18 @@ final class BookListViewModel: NSObject, ObservableObject {
     
     // キーボードの検索ボタンが押されたときにView側から呼び出す
     func resumeSearch(searchWord: String) {
+        self.cancellables.forEach { $0.cancel() }
         self.isFetching = true
+        self.bind()
+        self.booksSearchResponse = .init(items: [])
         self.onBooksSearchSubject.send(BooksSearchRequest(searchWord: searchWord))
     }
     
     // 通信をキャンセルする
     func cancel() {
+        self.isFetching = false
         self.cancellables.forEach { $0.cancel() }
+        self.booksSearchResponse = .init(items: [])
     }
     
 }
