@@ -13,6 +13,7 @@ struct BookDetailView: View {
     let textPadding: EdgeInsets = EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0)
     
     var bookItem: BookItem
+    var isFavorite: Bool
     
     var body: some View {
         GeometryReader { geometry in
@@ -48,31 +49,39 @@ struct BookDetailView: View {
                         .cornerRadius(6) // ImageにもRadiusをつける
                 }
                 VStack(alignment: .leading) {
-                    Text(self.bookItem.volumeInfo?.title ?? "")
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                        .font(Font.system(size: 17))
-                        .bold()
-                        .padding(self.textPadding)
-                        .lineLimit(2)
+                    HStack {
+                        Text(self.bookItem.volumeInfo?.title ?? "")
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                            .font(Font.system(size: 17))
+                            .bold()
+                            .padding(self.textPadding)
+                            .lineLimit(2)
+                        if self.isFavorite {
+                            Image(systemName: Constants.bookMark)
+                                .resizable()
+                                .scaledToFit()
+                                .clipped()
+                                .foregroundColor(Color.yellow)
+                        }
+                    }
                     Text(self.bookItem.volumeInfo?.authors?.first ?? "")
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                         .font(Font.system(size: 17))
                         .padding(self.textPadding)
                         .lineLimit(1)
                 }
-                .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 10))
+                .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            .frame(width: .infinity, height: 120)
         }
-        .frame(width: .infinity, height: 120)
+        .frame(height: 120)
     }
 }
 
 struct BookDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            BookDetailView(bookItem: Constants.getSampleBookItem(mockPerson: .steve_jobs))
+            BookDetailView(bookItem: Constants.getSampleBookItem(mockPerson: .steve_jobs), isFavorite: true)
         }
         .previewLayout(.sizeThatFits)
     }

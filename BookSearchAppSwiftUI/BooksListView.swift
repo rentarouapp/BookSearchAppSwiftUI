@@ -35,11 +35,16 @@ struct BooksListView: View {
                     .navigationBarTitleDisplayMode(.inline)
             } else {
                 List(books) { book in
-                    NavigationLink(destination:
-                                    BookDescriptionView(bookItem: book)
-                        .toolbarRole(.editor) // Backは非表示にする
-                    ) {
-                        BookDetailView(bookItem: book)
+                    ZStack {
+                        NavigationLink(destination:
+                                        BookDescriptionView(bookItem: book)
+                            .toolbarRole(.editor) // Backは非表示にする
+                        ) {
+                            EmptyView()
+                        }
+                        // NavigationLinkの右の矢印を消す
+                        .opacity(0)
+                        BookDetailView(bookItem: book, isFavorite: true)
                             .listRowInsets(rowInsets)
                     }
                 }
