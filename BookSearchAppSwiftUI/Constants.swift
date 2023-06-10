@@ -25,9 +25,6 @@ class Constants {
     public static let bookDescription: String = "本の説明"
     // 画像なし
     public static let noImageIcon: String = "no_image"
-    // お気に入り星マーク
-    public static let star: String = "star"
-    public static let starFill: String = "star.fill"
     // Safariマーク
     public static let safari: String = "safari"
     // ブックマーク
@@ -44,6 +41,11 @@ class Constants {
     static let nonAuthor: String = "作者なし"
     static let nonPublishedDate: String = "発刊年月日なし"
     static let nonDescription: String = "※この本に関しての説明はありません"
+    // お気に入り星マーク
+    static let star: String = "star"
+    static let starFill: String = "star.fill"
+    // お気に入りゴミ箱マーク
+    static let trash: String = "trash"
     
     // MARK: - EmpltyView
     // 探している人
@@ -52,8 +54,9 @@ class Constants {
     static let bookSearchGuide: String = "本を探せるよ！"
     
     // お気に入りに追加
-    public static let addFavorite: String = "お気に入りに追加"
-    public static let openBrowser: String = "ブラウザで開く"
+    static let addFavorite: String = "お気に入りに追加"
+    static let removeFavorite: String = "お気に入りから削除する"
+    static let openBrowser: String = "ブラウザで開く"
     
     // テスト
     public static let title_1: String = "スティーブ・ジョブズ捕物帖"

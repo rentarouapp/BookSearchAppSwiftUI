@@ -113,19 +113,32 @@ struct BookDescriptionView: View {
                                 .padding(self.descriptionPadding)
                         }
                         VStack(spacing: 10) {
-                            // ボタン2つ
+                            // お気に入りに登録、お気に入りから消す
+                            let isFavorite = self.realmViewModel.isFavorite(id: self.bookItem.id ?? "")
+                            
                             Button(action: {
-                                // お気に入りとしてRealmに保存する
-                                self.realmViewModel.addRealmBookData(bookItem: self.bookItem)
+                                if isFavorite {
+                                    // お気に入りに登録されていたらお気に入りから削除する
+                                    self.realmViewModel.deleteRealmBookData(bookItem: self.bookItem)
+                                } else {
+                                    // お気に入り登録がなければお気に入りとしてRealmに保存する
+                                    self.realmViewModel.addRealmBookData(bookItem: self.bookItem)
+                                }
+                                
                             }, label: {
-                                Image(systemName: Constants.star)
-                                Text(Constants.addFavorite)
+                                Image(systemName: isFavorite ? Constants.trash : Constants.star)
+                                Text(isFavorite ? Constants.removeFavorite : Constants.addFavorite)
                             })
                             .frame(width: geometry.size.width, height: 60)
-                            .background(Color.yellow)
-                            .foregroundColor(Color.white)
+                            .background(isFavorite ? Color.white : Color.yellow)
+                            .foregroundColor(isFavorite ? Color.yellow : Color.white)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 6)
+                                    .stroke(Color.yellow, lineWidth: 2)
+                            )
                             .cornerRadius(6)
                             
+                            // ブラウザで開く
                             Button(action: {
                                 if let urlStr = self.bookItem.volumeInfo?.infoLink,
                                    let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url){
