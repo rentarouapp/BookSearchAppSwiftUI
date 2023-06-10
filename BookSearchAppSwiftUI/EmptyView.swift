@@ -10,7 +10,10 @@ import SwiftUI
 struct EmptyView: View {
     var body: some View {
         Image("search-man")
+            .resizable()
             .frame(width: 200, height: 200)
+            .scaledToFit()
+            .clipped()
             .background(Color.white)
     }
 }

@@ -7,7 +7,6 @@
 
 import Foundation
 import Combine
-import PKHUD
 
 final class BookListViewModel: NSObject, ObservableObject {
     @Published var booksSearchResponse: BooksSearchResponse = .init(items: [])
