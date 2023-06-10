@@ -30,6 +30,14 @@ class Constants {
     public static let starFill: String = "star.fill"
     // Safariマーク
     public static let safari: String = "safari"
+    // ブックマーク
+    static let bookMark: String = "bookmark.fill"
+    
+    // MARK: - EmpltyView
+    // 探している人
+    static let searchMan: String = "search-man"
+    // 初期画面文言
+    static let bookSearchGuide: String = "本を探せるよ！"
     
     // お気に入りに追加
     public static let addFavorite: String = "お気に入りに追加"
