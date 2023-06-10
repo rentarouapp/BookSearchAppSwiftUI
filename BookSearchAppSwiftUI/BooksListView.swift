@@ -30,7 +30,7 @@ struct BooksListView: View {
         
         NavigationStack {
             if books.isEmpty {
-                EmptyView()
+                BookSearchEmptyView()
                     .navigationTitle("本を探す")
                     .navigationBarTitleDisplayMode(.inline)
             } else {
@@ -45,7 +45,7 @@ struct BooksListView: View {
                 .navigationBarTitleDisplayMode(.inline)
             }
         }
-        .searchable(text: $searchText)
+        .searchable(text: $searchText, prompt: "タイトルや著者名を入力してね")
         .onChange(of: searchText) { newValue in
             // 検索バーの文字列が更新された
             if newValue == "" {

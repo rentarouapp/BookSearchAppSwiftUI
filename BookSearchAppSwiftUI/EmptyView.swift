@@ -7,19 +7,34 @@
 
 import SwiftUI
 
-struct EmptyView: View {
+struct BookSearchEmptyView: View {
     var body: some View {
-        Image("search-man")
-            .resizable()
-            .frame(width: 200, height: 200)
-            .scaledToFit()
-            .clipped()
-            .background(Color.white)
+        GeometryReader { geometry in
+            ScrollView(.vertical) {
+                VStack(spacing: 6) {
+                    Spacer()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    Image("search-man")
+                        .resizable()
+                        .frame(width: 200, height: 200, alignment: .center)
+                        .scaledToFill()
+                        .clipped()
+                        .background(Color.white)
+                    Text("本を探せるよ！")
+                        .font(Font.system(size: 20))
+                        .bold()
+                    Spacer()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+                .frame(width: geometry.size.width)
+                .frame(minHeight: geometry.size.height)
+            }
+        }
     }
 }
 
-struct EmptyView_Previews: PreviewProvider {
+struct BookSearchEmptyView_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyView().previewLayout(.sizeThatFits)
+        BookSearchEmptyView().previewLayout(.sizeThatFits)
     }
 }
