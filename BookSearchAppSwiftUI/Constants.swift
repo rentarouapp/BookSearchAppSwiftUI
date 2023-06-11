@@ -58,6 +58,11 @@ class Constants {
     static let removeFavorite: String = "お気に入りから削除する"
     static let openBrowser: String = "ブラウザで開く"
     
+    // MARK: - Alert
+    static let deleteAlertMessage: String = "「%@」\nをお気に入りから削除してよいですか？"
+    static let commonNoButton: String = "いいえ"
+    static let deleteButton: String = "削除"
+    
     // テスト
     public static let title_1: String = "スティーブ・ジョブズ捕物帖"
     public static let title_2: String = "クック・クッキング"
