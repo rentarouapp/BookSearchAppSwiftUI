@@ -33,6 +33,10 @@
 		B7D9816F2A34A20F00EF725F /* RealmBookData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D9816E2A34A20F00EF725F /* RealmBookData.swift */; };
 		B7D981712A34A2E000EF725F /* RealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D981702A34A2E000EF725F /* RealmViewModel.swift */; };
 		B7D981732A34A31400EF725F /* RealmBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D981722A34A31400EF725F /* RealmBookModel.swift */; };
+		B7D981762A35A88F00EF725F /* AlertEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D981752A35A88F00EF725F /* AlertEntity.swift */; };
+		B7D981782A35A8A500EF725F /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D981772A35A8A500EF725F /* CustomAlertView.swift */; };
+		B7D9817A2A35AB7C00EF725F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D981792A35AB7C00EF725F /* Extensions.swift */; };
+		B7D9817C2A35AE6300EF725F /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D9817B2A35AE6300EF725F /* AlertViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +91,10 @@
 		B7D9816E2A34A20F00EF725F /* RealmBookData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBookData.swift; sourceTree = "<group>"; };
 		B7D981702A34A2E000EF725F /* RealmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmViewModel.swift; sourceTree = "<group>"; };
 		B7D981722A34A31400EF725F /* RealmBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBookModel.swift; sourceTree = "<group>"; };
+		B7D981752A35A88F00EF725F /* AlertEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertEntity.swift; sourceTree = "<group>"; };
+		B7D981772A35A8A500EF725F /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
+		B7D981792A35AB7C00EF725F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B7D9817B2A35AE6300EF725F /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
 		C29BD669B6BE061443266B0D /* Pods_BookSearchAppSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookSearchAppSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBC08429602738B78C9A4CDC /* Pods-BookSearchAppSwiftUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookSearchAppSwiftUITests.release.xcconfig"; path = "Target Support Files/Pods-BookSearchAppSwiftUITests/Pods-BookSearchAppSwiftUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -179,6 +187,8 @@
 				B7D981572A31FC5700EF725F /* BooksSearchResponceModel.swift */,
 				B7D981592A31FDE300EF725F /* APIPublisher.swift */,
 				B7D9815B2A31FEF100EF725F /* APISubscriber.swift */,
+				B7D981792A35AB7C00EF725F /* Extensions.swift */,
+				B7D981742A35A86B00EF725F /* Alert */,
 				B7D981682A34614E00EF725F /* Database */,
 				B7D9815F2A344C8D00EF725F /* PKHUD */,
 				B7AEA2512A282665009069C6 /* Assets.xcassets */,
@@ -231,6 +241,16 @@
 				B7D981722A34A31400EF725F /* RealmBookModel.swift */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		B7D981742A35A86B00EF725F /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				B7D981752A35A88F00EF725F /* AlertEntity.swift */,
+				B7D981772A35A8A500EF725F /* CustomAlertView.swift */,
+				B7D9817B2A35AE6300EF725F /* AlertViewModel.swift */,
+			);
+			path = Alert;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -476,12 +496,16 @@
 				B7D981672A344D0300EF725F /* PKHUD.swift in Sources */,
 				B7AEA2502A282664009069C6 /* ContentView.swift in Sources */,
 				B7D981732A34A31400EF725F /* RealmBookModel.swift in Sources */,
+				B7D9817C2A35AE6300EF725F /* AlertViewModel.swift in Sources */,
 				B7AEA2782A28DA2E009069C6 /* BookDetailView.swift in Sources */,
 				B7D9815A2A31FDE300EF725F /* APIPublisher.swift in Sources */,
 				B7D981612A344CB300EF725F /* PKHUDView.swift in Sources */,
 				B7AEA27E2A28DCD4009069C6 /* FavoritesListView.swift in Sources */,
 				B7D9816F2A34A20F00EF725F /* RealmBookData.swift in Sources */,
+				B7D981782A35A8A500EF725F /* CustomAlertView.swift in Sources */,
 				B7AEA2812A29B9E9009069C6 /* Constants.swift in Sources */,
+				B7D981762A35A88F00EF725F /* AlertEntity.swift in Sources */,
+				B7D9817A2A35AB7C00EF725F /* Extensions.swift in Sources */,
 				B7D981582A31FC5700EF725F /* BooksSearchResponceModel.swift in Sources */,
 				B78B72A52A3095F100CF869B /* BookListViewModel.swift in Sources */,
 				B7AEA24E2A282664009069C6 /* BookSearchAppSwiftUIApp.swift in Sources */,
