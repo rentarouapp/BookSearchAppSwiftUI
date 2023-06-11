@@ -93,12 +93,12 @@ class RealmBookModel: ObservableObject {
         realmBookData.bookId = bookItem.id ?? ""
         realmBookData.title = bookItem.volumeInfo?.title ?? ""
         let authors = bookItem.volumeInfo?.authors?.joined(separator: ",")
-        realmBookData.authors = authors ?? ""
+        realmBookData.authors = authors ?? Constants.nonAuthor
         realmBookData.smallImageUrl = bookItem.volumeInfo?.imageLinks?.smallThumbnail ?? ""
         realmBookData.largeImageUrl = bookItem.volumeInfo?.imageLinks?.thumbnail ?? ""
         realmBookData.infoUrl = bookItem.volumeInfo?.infoLink ?? ""
-        realmBookData.publishedDate = bookItem.volumeInfo?.publishedDate ?? ""
-        realmBookData.textDescription = bookItem.volumeInfo?.description ?? ""
+        realmBookData.publishedDate = bookItem.volumeInfo?.publishedDate ?? Constants.nonPublishedDate
+        realmBookData.textDescription = bookItem.volumeInfo?.description ?? Constants.nonDescription
         return realmBookData
     }
     
