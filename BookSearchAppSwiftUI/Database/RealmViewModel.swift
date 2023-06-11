@@ -32,6 +32,9 @@ class RealmViewModel: ObservableObject {
     
     // Viewからのリクエストでモデルをお気に入りから削除する
     func deleteRealmBookData(bookItem: BookItem) {
+        // 変更することを明示
+        self.objectWillChange.send()
+        // Modelに依頼
         self.model.deleteRealmBookData(bookItem: bookItem)
     }
     
