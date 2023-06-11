@@ -21,6 +21,8 @@ struct BookDescriptionView: View {
     
     // Realm
     @EnvironmentObject var realmViewModel: RealmViewModel
+    // Alert
+    @ObservedObject var alertViewModel = AlertViewModel()
     
     // UI Style
     let viewInset: EdgeInsets = EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
@@ -119,7 +121,17 @@ struct BookDescriptionView: View {
                             Button(action: {
                                 if isFavorite {
                                     // お気に入りに登録されていたらお気に入りから削除する
-                                    self.realmViewModel.deleteRealmBookData(bookItem: self.bookItem)
+                                    let message: String = String(format: Constants.deleteAlertMessage, self.bookItem.volumeInfo?.title ?? "")
+                                    self.alertViewModel.alertEntity.show(
+                                        alertType: .doubleButtonDestructive,
+                                        title: Constants.deleteButton,
+                                        message: message,
+                                        positiveTitle: Constants.commonNoButton,
+                                        negativeTitle: Constants.deleteButton,
+                                        buttonAction: {
+                                        // 削除ボタンタップで削除を実行
+                                        self.realmViewModel.deleteRealmBookData(bookItem: self.bookItem)
+                                    })
                                 } else {
                                     // お気に入り登録がなければお気に入りとしてRealmに保存する
                                     self.realmViewModel.addRealmBookData(bookItem: self.bookItem)
@@ -129,6 +141,7 @@ struct BookDescriptionView: View {
                                 Image(systemName: isFavorite ? Constants.trash : Constants.star)
                                 Text(isFavorite ? Constants.removeFavorite : Constants.addFavorite)
                             })
+                            .customAlert(for: $alertViewModel.alertEntity)
                             .frame(width: geometry.size.width, height: 60)
                             .background(isFavorite ? Color.white : Color.yellow)
                             .foregroundColor(isFavorite ? Color.yellow : Color.white)
