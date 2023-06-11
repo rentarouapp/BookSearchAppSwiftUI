@@ -123,7 +123,7 @@ struct BookDescriptionView: View {
                                     // お気に入りに登録されていたらお気に入りから削除する
                                     let message: String = String(format: Constants.deleteAlertMessage, self.bookItem.volumeInfo?.title ?? "")
                                     self.alertViewModel.alertEntity.show(
-                                        alertType: .doubleButtonDestructive,
+                                        alertButtonType: .doubleButtonDestructive,
                                         title: Constants.deleteButton,
                                         message: message,
                                         positiveTitle: Constants.commonNoButton,
@@ -165,14 +165,18 @@ struct BookDescriptionView: View {
                             .foregroundColor(Color.white)
                             .cornerRadius(6)
                         }
-                        Spacer().frame(height: 16)
+                        // ボタンを押したときのアラートはここ
+                        .customAlert(for: $alertViewModel.alertEntity)
+                        Spacer()
+                            // Realmから受けたアラートはここ
+                            .customAlert(for: $realmViewModel.alertViewModel.alertEntity)
+                            .frame(height: 16)
                     }
                 }
             }.padding(self.viewInset)
         }
         .navigationTitle(self.bookItem.volumeInfo?.title ?? "")
             .navigationBarTitleDisplayMode(.inline)
-            .customAlert(for: $alertViewModel.alertEntity)
     }
 }
 

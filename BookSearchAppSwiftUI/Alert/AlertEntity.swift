@@ -7,7 +7,13 @@
 
 import Foundation
 
-enum AlertType {
+/* 出すアラートのタイプ */
+enum AlertInfo {
+    case realmSuccessful
+    case realmFailed
+}
+
+enum AlertButtonType {
     case singleButton
     case doubleButton
     case doubleButtonDestructive
@@ -15,21 +21,21 @@ enum AlertType {
 
 struct AlertEntity {
     var isShowingAlert: Bool = false
-    var alertType: AlertType = .singleButton
+    var alertButtonType: AlertButtonType = .singleButton
     var title: String = ""
     var message: String = ""
     var positiveTitle: String = ""
     var negativeTitle: String = ""
     var buttonAction: () -> Void = {}
     
-    mutating func show(alertType: AlertType,
+    mutating func show(alertButtonType: AlertButtonType,
                        title: String,
                        message: String,
                        positiveTitle: String,
                        negativeTitle: String,
                        buttonAction: @escaping () -> Void = {}) {
         
-        self.alertType = alertType
+        self.alertButtonType = alertButtonType
         self.title = title
         self.message = message
         self.positiveTitle = positiveTitle

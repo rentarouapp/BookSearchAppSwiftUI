@@ -11,6 +11,8 @@ import RealmSwift
 class RealmViewModel: ObservableObject {
     
     @Published var model: RealmBookModel = RealmBookModel()
+    // Alert
+    @Published var alertViewModel = AlertViewModel()
     
     // DBに書き込み中かどうか
     var isWorking: Bool {
@@ -28,6 +30,7 @@ class RealmViewModel: ObservableObject {
         self.objectWillChange.send()
         // Modelに依頼
         self.model.addRealmBookData(bookItem: bookItem)
+        
     }
     
     // Viewからのリクエストでモデルをお気に入りから削除する

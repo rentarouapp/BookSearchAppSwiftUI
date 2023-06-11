@@ -13,7 +13,7 @@ struct CustomAlertView: ViewModifier {
     func body(content: Content) -> some View {
         content
             .alert(isPresented: $alertEntity.isShowingAlert) {
-                switch alertEntity.alertType {
+                switch alertEntity.alertButtonType {
                 case .singleButton:
                     return Alert(title: Text(alertEntity.title),
                                  message: Text(alertEntity.message),
