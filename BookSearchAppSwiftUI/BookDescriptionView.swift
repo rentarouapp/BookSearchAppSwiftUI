@@ -129,7 +129,7 @@ struct BookDescriptionView: View {
                                         positiveTitle: Constants.commonNoButton,
                                         negativeTitle: Constants.deleteButton,
                                         buttonAction: {
-                                        // 削除ボタンタップで削除を実行
+                                        //アラートの 削除ボタンタップで削除を実行
                                         self.realmViewModel.deleteRealmBookData(bookItem: self.bookItem)
                                     })
                                 } else {
@@ -141,7 +141,6 @@ struct BookDescriptionView: View {
                                 Image(systemName: isFavorite ? Constants.trash : Constants.star)
                                 Text(isFavorite ? Constants.removeFavorite : Constants.addFavorite)
                             })
-                            .customAlert(for: $alertViewModel.alertEntity)
                             .frame(width: geometry.size.width, height: 60)
                             .background(isFavorite ? Color.white : Color.yellow)
                             .foregroundColor(isFavorite ? Color.yellow : Color.white)
@@ -173,6 +172,7 @@ struct BookDescriptionView: View {
         }
         .navigationTitle(self.bookItem.volumeInfo?.title ?? "")
             .navigationBarTitleDisplayMode(.inline)
+            .customAlert(for: $alertViewModel.alertEntity)
     }
 }
 
