@@ -26,7 +26,7 @@ struct FavoritesListView: View {
             if books.isEmpty {
                 BookSearchEmptyView()
                     .navigationTitle(Constants.favoriteList)
-                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationBarTitleDisplayMode(.large)
             } else {
                 List(books) { book in
                     ZStack {
@@ -44,7 +44,7 @@ struct FavoritesListView: View {
                 }
                 .listStyle(.plain)
                 .navigationTitle(Constants.favoriteList)
-                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarTitleDisplayMode(.large)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button(action: {

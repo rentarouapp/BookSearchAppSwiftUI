@@ -35,7 +35,7 @@ struct BooksListView: View {
             if books.isEmpty {
                 BookSearchEmptyView()
                     .navigationTitle(Constants.searchBook)
-                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationBarTitleDisplayMode(.large)
             } else {
                 List(books) { book in
                     ZStack {
@@ -53,7 +53,7 @@ struct BooksListView: View {
                 }
                 .listStyle(.plain)
                 .navigationTitle(Constants.searchBook)
-                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarTitleDisplayMode(.large)
             }
         }
         // API関連のアラート
