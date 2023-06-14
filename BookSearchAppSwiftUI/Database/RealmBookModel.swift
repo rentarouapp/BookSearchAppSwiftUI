@@ -40,12 +40,13 @@ class RealmBookModel: ObservableObject {
     }
     
     // BookItemのオブジェクトを受け取ってRealmに登録する
-    func addRealmBookData(bookItem: BookItem) {
+    func addRealmBookData(bookItem: BookItem, completion: @escaping () -> Void) {
         guard let realm = self.realm else { return }
         let realmBookData = self.convertRealmBookData(fromBookItem: bookItem)
         do {
             try realm.write {
                 realm.add(realmBookData)
+                completion()
             }
         } catch {
             print("書き込み失敗")
@@ -53,12 +54,13 @@ class RealmBookModel: ObservableObject {
     }
     
     // BookItemのオブジェクトを受け取ってRealmから削除する
-    func deleteRealmBookData(bookItem: BookItem) {
+    func deleteRealmBookData(bookItem: BookItem, completion: @escaping () -> Void) {
         guard let realm = self.realm, let id = bookItem.id else { return }
         let targetBookData = realm.objects(RealmBookData.self).where({ $0.bookId == id })
         do {
             try realm.write {
                 realm.delete(targetBookData)
+                completion()
             }
         } catch {
             print("削除失敗")

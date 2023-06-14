@@ -121,7 +121,8 @@ struct BookDescriptionView: View {
                             Button(action: {
                                 if isFavorite {
                                     // お気に入りに登録されていたらお気に入りから削除する
-                                    let message: String = String(format: Constants.deleteAlertMessage, self.bookItem.volumeInfo?.title ?? "")
+                                    // 削除時アラートはいったん保留
+                                    /*let message: String = String(format: Constants.deleteAlertMessage, self.bookItem.volumeInfo?.title ?? "")
                                     self.alertViewModel.alertEntity.show(
                                         alertButtonType: .doubleButtonDestructive,
                                         title: Constants.deleteButton,
@@ -129,9 +130,11 @@ struct BookDescriptionView: View {
                                         positiveTitle: Constants.commonNoButton,
                                         negativeTitle: Constants.deleteButton,
                                         buttonAction: {
-                                        //アラートの 削除ボタンタップで削除を実行
-                                        self.realmViewModel.deleteRealmBookData(bookItem: self.bookItem)
-                                    })
+                                            //アラートの 削除ボタンタップで削除を実行
+                                            self.realmViewModel.deleteRealmBookData(bookItem: bookItem)
+                                    })*/
+                                    //アラートの 削除ボタンタップで削除を実行
+                                    self.realmViewModel.deleteRealmBookData(bookItem: bookItem)
                                 } else {
                                     // お気に入り登録がなければお気に入りとしてRealmに保存する
                                     self.realmViewModel.addRealmBookData(bookItem: self.bookItem)

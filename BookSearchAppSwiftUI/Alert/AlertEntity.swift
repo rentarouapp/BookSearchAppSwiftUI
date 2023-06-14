@@ -25,7 +25,7 @@ struct AlertEntity {
     mutating func show(alertButtonType: AlertButtonType,
                        title: String,
                        message: String,
-                       positiveTitle: String,
+                       positiveTitle: String = "",
                        negativeTitle: String,
                        buttonAction: @escaping () -> Void = {}) {
         
