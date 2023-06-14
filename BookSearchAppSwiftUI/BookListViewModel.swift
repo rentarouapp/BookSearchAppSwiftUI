@@ -19,6 +19,7 @@ final class BookListViewModel: NSObject, ObservableObject {
     
     private func bind() {
         self.cancellables += [
+            // 通信結果
             self.onBooksSearchSubject
                 .flatMap { [apiService] (request) in
                     apiService.request(with: BooksSearchRequest(searchWord: request.searchWord))
@@ -34,10 +35,11 @@ final class BookListViewModel: NSObject, ObservableObject {
                     self.isFetching = false
                     self.booksSearchResponse = response
                 }),
-            errorSubject
+            // エラー
+            self.errorSubject
                 .sink(receiveValue: { (error) in
                     self.isFetching = false
-                    print("API Error")
+                    self.handleAPIError(error: error)
                 })
         ]
     }
@@ -56,6 +58,18 @@ final class BookListViewModel: NSObject, ObservableObject {
         self.isFetching = false
         self.cancellables.forEach { $0.cancel() }
         self.booksSearchResponse = .init(items: [])
+    }
+    
+    // API通信のエラーをさばく
+    private func handleAPIError(error: APIServiceError) {
+        switch error {
+        case .invalidURL:
+            print("invalidURL")
+        case .responseError:
+            print("responseError")
+        case let .parseError(error):
+            print("parseError")
+        }
     }
     
 }
