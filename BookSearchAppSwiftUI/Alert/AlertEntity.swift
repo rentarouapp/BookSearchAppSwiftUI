@@ -7,12 +7,6 @@
 
 import Foundation
 
-/* 出すアラートのタイプ */
-enum AlertInfo {
-    case realmSuccessful
-    case realmFailed
-}
-
 enum AlertButtonType {
     case singleButton
     case doubleButton
