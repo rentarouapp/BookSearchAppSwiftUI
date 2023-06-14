@@ -45,12 +45,17 @@ class RealmViewModel: ObservableObject {
         self.objectWillChange.send()
         // Modelに依頼
         self.model.deleteRealmBookData(bookItem: bookItem, completion: { [weak self] in
-            guard let `self` = self else { return }
             // 削除完了
-            self.alertViewModel.alertEntity.show(alertButtonType: .singleButton,
-                                                 title: Constants.realmDeleteDone,
-                                                 message: Constants.realmDeleteDoneMessage,
-                                                 negativeTitle: Constants.commonCloseButton)
+            guard let `self` = self else { return }
+            // 仕様のバグ？こうしないと即時で呼ばれない
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { [weak self] in
+                guard let `self` = self else { return }
+                self.objectWillChange.send()
+                self.alertViewModel.alertEntity.show(alertButtonType: .singleButton,
+                                                     title: Constants.realmDeleteDone,
+                                                     message: Constants.realmDeleteDoneMessage,
+                                                     negativeTitle: Constants.commonCloseButton)
+            })
         })
     }
     
