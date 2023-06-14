@@ -71,11 +71,17 @@ final class BookListViewModel: NSObject, ObservableObject {
             let reachability = try Reachability()
             if reachability.connection == .unavailable {
                 // インターネットに接続していない場合には未接続アラートを出す
-                self.alertViewModel.alertEntity.show(alertButtonType: .singleButton,
-                                                     title: "テスト",
-                                                     message: "テスト",
-                                                     positiveTitle: "テスト",
-                                                     negativeTitle: "テスト")
+                self.alertViewModel.alertEntity.show(alertButtonType: .doubleButton,
+                                                     title: Constants.notNetWorking,
+                                                     message: Constants.notNetWorkingMessage,
+                                                     positiveTitle: Constants.commonCloseButton,
+                                                     negativeTitle: Constants.commonSetting,
+                                                     buttonAction: {
+                    // 設定に飛ばす
+                    if let settingURL = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(settingURL)
+                    }
+                })
                 return
             }
         } catch {
