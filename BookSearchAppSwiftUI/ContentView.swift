@@ -13,15 +13,15 @@ struct ContentView: View {
             BooksListView()
                 .tabItem {
                     VStack {
-                        Image(systemName: "magnifyingglass")
-                        Text("検索")
+                        Image(systemName: Constants.magnifyingglass_icon)
+                        Text(Constants.bottom_search)
                     }
                 }.tag(1)
             FavoritesListView()
                 .tabItem {
                     VStack {
-                        Image(systemName: "star")
-                        Text("お気に入り")
+                        Image(systemName: Constants.star_icon)
+                        Text(Constants.bottom_favorite)
                     }
                 }.tag(2)
         }
@@ -31,5 +31,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(RealmViewModel())
     }
 }

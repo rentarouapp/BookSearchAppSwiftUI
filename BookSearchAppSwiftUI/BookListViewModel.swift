@@ -26,7 +26,7 @@ final class BookListViewModel: NSObject, ObservableObject {
             // 通信結果
             self.onBooksSearchSubject
                 .flatMap { [apiService] (request) in
-                    apiService.request(with: BooksSearchRequest(searchWord: request.searchWord))
+                    apiService.request(with: BooksSearchRequest(searchWord: request.searchWord, maxResults: request.maxResults))
                         .catch { [weak self] error -> Empty<BooksSearchResponse, Never> in
                             if let `self` = self {
                                 self.errorSubject.send(error)
@@ -49,12 +49,12 @@ final class BookListViewModel: NSObject, ObservableObject {
     }
     
     // キーボードの検索ボタンが押されたときにView側から呼び出す
-    func resumeSearch(searchWord: String) {
+    func resumeSearch(searchWord: String, maxResults: Int) {
         self.cancellables.forEach { $0.cancel() }
         self.isFetching = true
         self.bind()
         self.booksSearchResponse = .init(items: [])
-        self.onBooksSearchSubject.send(BooksSearchRequest(searchWord: searchWord))
+        self.onBooksSearchSubject.send(BooksSearchRequest(searchWord: searchWord, maxResults: maxResults))
     }
     
     // 通信をキャンセルする

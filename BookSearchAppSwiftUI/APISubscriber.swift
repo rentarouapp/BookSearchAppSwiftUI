@@ -18,19 +18,21 @@ struct BooksSearchRequest: APIRequestType {
     typealias Response = BooksSearchResponse
     
     var path: String {
-        return "volumes?"
+        return Constants.bookSearchVolumesPath
     }
     var queryItems: [URLQueryItem]? {
         return [
-            .init(name: "q", value: self.searchWord),
-            .init(name: "maxResults", value: "12")
+            .init(name: Constants.queryKey, value: self.searchWord),
+            .init(name: Constants.maxResultsKey, value: "\(self.maxResults)")
         ]
     }
     
     public let searchWord: String
+    public let maxResults: Int
     
-    init(searchWord: String) {
+    init(searchWord: String, maxResults: Int) {
         self.searchWord = searchWord
+        self.maxResults = maxResults
     }
     
 }

@@ -22,6 +22,9 @@ struct BooksListView: View {
     // test
     private var isMock = false
     
+    // 検索上限数
+    let maxResults: Int = 12
+    
     var body: some View {
         
         // Mock or Production
@@ -71,7 +74,7 @@ struct BooksListView: View {
             // 決定キー押された
             if !self.searchText.isEmpty {
                 self.focus = false
-                self.bookListViewModel.resumeSearch(searchWord: self.searchText)
+                self.bookListViewModel.resumeSearch(searchWord: self.searchText, maxResults: self.maxResults)
             }
         }
         .focused(self.$focus)

@@ -48,10 +48,7 @@ struct FavoritesListView: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button(action: {
-                            print("編集タップ")
-                            // テストでRealmから読み出す
-                            print("realmCount: \(self.realmViewModel.model.items?.count ?? 0)")
-                            //self.bookListViewModel.resumeSearch(searchWord: "あああ")
+                            // 編集のアクション
                         }) {
                             Text("編集")
                         }

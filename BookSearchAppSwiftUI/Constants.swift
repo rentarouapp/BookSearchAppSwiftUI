@@ -15,6 +15,25 @@ class Constants {
         case jony_ive
     }
     
+    // BottomNav
+    static let magnifyingglass_icon: String = "magnifyingglass"
+    static let star_icon: String = "star"
+    static let bottom_search: String = "検索"
+    static let bottom_favorite: String = "お気に入り"
+    
+    // TopNav
+    static let edit: String = "編集"
+    
+    // API
+    static let bookSearchURLBaseString: String = "https://www.googleapis.com/books/v1/"
+    static let methodGET: String = "GET"
+    static let aplication_json: String = "application/json"
+    static let apiHeaderField: String = "Content-Type"
+    static let bookSearchVolumesPath: String = "volumes?"
+    static let queryKey: String = "q"
+    static let maxResultsKey: String = "maxResults"
+    
+    
     // タイトル
     public static let title: String = "タイトル"
     // 著者

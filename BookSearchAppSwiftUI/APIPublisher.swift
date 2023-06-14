@@ -15,7 +15,7 @@ protocol APIServiceType {
 final class APIService: APIServiceType {
     
     private let baseURLString: String
-    init(baseURLString: String = "https://www.googleapis.com/books/v1/") {
+    init(baseURLString: String = Constants.bookSearchURLBaseString) {
         self.baseURLString = baseURLString
     }
     
@@ -33,8 +33,8 @@ final class APIService: APIServiceType {
             return Fail(error: APIServiceError.invalidURL).eraseToAnyPublisher()
         }
         var request = URLRequest(url: _url)
-        request.httpMethod = "GET"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type") // Request Header
+        request.httpMethod = Constants.methodGET
+        request.addValue(Constants.aplication_json, forHTTPHeaderField: Constants.apiHeaderField) // Request Header
         // トークンの設定もいける
         //request.addValue("トークン", forHTTPHeaderField: "X-Mobile-Token")
         
