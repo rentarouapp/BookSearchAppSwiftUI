@@ -30,7 +30,12 @@ class RealmViewModel: ObservableObject {
         self.objectWillChange.send()
         // Modelに依頼
         self.model.addRealmBookData(bookItem: bookItem)
-        
+        // 完了したとき
+        self.alertViewModel.alertEntity.show(alertButtonType: .singleButton,
+                                             title: "テスト",
+                                             message: "テスト",
+                                             positiveTitle: "テスト",
+                                             negativeTitle: "テスト")
     }
     
     // Viewからのリクエストでモデルをお気に入りから削除する

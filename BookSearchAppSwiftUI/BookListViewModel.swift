@@ -7,10 +7,14 @@
 
 import Foundation
 import Combine
+import Reachability
 
 final class BookListViewModel: NSObject, ObservableObject {
     @Published var booksSearchResponse: BooksSearchResponse = .init(items: [])
     @Published var isFetching: Bool = false
+    
+    // Alert
+    @Published var alertViewModel = AlertViewModel()
     
     private let apiService = APIService()
     private let errorSubject = PassthroughSubject<APIServiceError, Never>()
@@ -62,6 +66,21 @@ final class BookListViewModel: NSObject, ObservableObject {
     
     // API通信のエラーをさばく
     private func handleAPIError(error: APIServiceError) {
+        
+        do {
+            let reachability = try Reachability()
+            if reachability.connection == .unavailable {
+                // インターネットに接続していない場合には未接続アラートを出す
+                self.alertViewModel.alertEntity.show(alertButtonType: .singleButton,
+                                                     title: "テスト",
+                                                     message: "テスト",
+                                                     positiveTitle: "テスト",
+                                                     negativeTitle: "テスト")
+                return
+            }
+        } catch {
+            print("Reachability_failed")
+        }
         switch error {
         case .invalidURL:
             print("invalidURL")

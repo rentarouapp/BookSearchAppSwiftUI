@@ -56,6 +56,8 @@ struct BooksListView: View {
                 .navigationBarTitleDisplayMode(.inline)
             }
         }
+        // API関連のアラート
+        .customAlert(for: $bookListViewModel.alertViewModel.alertEntity)
         .searchable(text: $searchText, prompt: Constants.placeHolder)
         .onChange(of: searchText) { newValue in
             // 検索バーの文字列が更新された
