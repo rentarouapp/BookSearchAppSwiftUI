@@ -59,9 +59,25 @@ class Constants {
     static let openBrowser: String = "ブラウザで開く"
     
     // MARK: - Alert
-    static let deleteAlertMessage: String = "「%@」\nをお気に入りから削除してよいですか？"
+    static let commonSetting: String = "設定"
+    static let commonCloseButton: String = "閉じる"
     static let commonNoButton: String = "いいえ"
+    
+    // お気に入りから削除
+    static let deleteAlertMessage: String = "「%@」\nをお気に入りから削除してよいですか？"
     static let deleteButton: String = "削除"
+    
+    // お気に入りに追加完了
+    static let realmDone: String = "お気に入り登録"
+    static let realmDoneMessage: String = "お気に入り登録が完了しました！"
+    
+    // お気に入り削除完了
+    static let realmDeleteDone: String = "お気に入り削除"
+    static let realmDeleteDoneMessage: String = "お気に入りから削除しました！"
+    
+    // ネットワーク接続なし
+    static let notNetWorking: String = "ネットワーク接続がありません"
+    static let notNetWorkingMessage: String = "「設定」からネットワーク接続を確認してください。"
     
     // テスト
     public static let title_1: String = "スティーブ・ジョブズ捕物帖"
