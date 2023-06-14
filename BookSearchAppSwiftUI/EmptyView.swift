@@ -17,7 +17,7 @@ struct BookSearchEmptyView: View {
                     Image(Constants.searchMan)
                         .resizable()
                         .frame(width: 200, height: 200, alignment: .center)
-                        .scaledToFill()
+                        .aspectRatio(contentMode: .fit)
                         .clipped()
                         .background(Color.white)
                     Text(Constants.bookSearchGuide)
