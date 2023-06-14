@@ -15,6 +15,8 @@ struct FavoritesListView: View {
     // Realm
     @EnvironmentObject var realmViewModel: RealmViewModel
     
+    @State var editMode: EditMode = .inactive
+    
     // UI Style
     private let rowInsets: EdgeInsets = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
     
@@ -48,6 +50,10 @@ struct FavoritesListView: View {
                         }
                     }
                 }
+                .toolbar {
+                    EditButton()
+                }
+                .environment(\.editMode, $editMode)
                 .listStyle(.plain)
                 .navigationTitle(Constants.favoriteList)
                 .navigationBarTitleDisplayMode(.large)
