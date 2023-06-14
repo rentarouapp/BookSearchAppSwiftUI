@@ -130,7 +130,8 @@ struct BookDescriptionView: View {
                                         negativeTitle: Constants.deleteButton,
                                         buttonAction: {
                                             //アラートの 削除ボタンタップで削除を実行
-                                            self.realmViewModel.deleteRealmBookData(bookItem: bookItem)
+                                            //削除ののちにアラートを表示
+                                            self.realmViewModel.deleteRealmBookData(bookItem: bookItem, withAlert: true)
                                     })
                                 } else {
                                     // お気に入り登録がなければお気に入りとしてRealmに保存する

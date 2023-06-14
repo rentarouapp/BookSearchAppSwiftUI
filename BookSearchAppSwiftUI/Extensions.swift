@@ -13,3 +13,9 @@ extension View {
         modifier(CustomAlertView(alertEntity: alertEntity))
     }
 }
+
+extension Collection {
+    subscript (safe index: Index) -> Element? {
+        return indices.contains(index) ? self[index] : nil
+    }
+}

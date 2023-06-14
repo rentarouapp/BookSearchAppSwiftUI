@@ -40,22 +40,24 @@ class RealmViewModel: ObservableObject {
     }
     
     // Viewからのリクエストでモデルをお気に入りから削除する
-    func deleteRealmBookData(bookItem: BookItem) {
+    func deleteRealmBookData(bookItem: BookItem, withAlert: Bool) {
         // 変更することを明示
         self.objectWillChange.send()
         // Modelに依頼
         self.model.deleteRealmBookData(bookItem: bookItem, completion: { [weak self] in
             // 削除完了
-            guard let `self` = self else { return }
-            // 仕様のバグ？こうしないと即時で呼ばれない
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { [weak self] in
+            if withAlert {
                 guard let `self` = self else { return }
-                self.objectWillChange.send()
-                self.alertViewModel.alertEntity.show(alertButtonType: .singleButton,
-                                                     title: Constants.realmDeleteDone,
-                                                     message: Constants.realmDeleteDoneMessage,
-                                                     negativeTitle: Constants.commonCloseButton)
-            })
+                // 仕様のバグ？こうしないと即時で呼ばれない
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { [weak self] in
+                    guard let `self` = self else { return }
+                    self.objectWillChange.send()
+                    self.alertViewModel.alertEntity.show(alertButtonType: .singleButton,
+                                                         title: Constants.realmDeleteDone,
+                                                         message: Constants.realmDeleteDoneMessage,
+                                                         negativeTitle: Constants.commonCloseButton)
+                })
+            }
         })
     }
     

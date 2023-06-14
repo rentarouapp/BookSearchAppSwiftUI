@@ -20,40 +20,37 @@ struct FavoritesListView: View {
     
     var body: some View {
         
-        let books: [BookItem] = self.realmViewModel.booksFromData
-        
         NavigationStack {
-            if books.isEmpty {
+            if self.realmViewModel.booksFromData.isEmpty {
                 BookSearchEmptyView()
                     .navigationTitle(Constants.favoriteList)
                     .navigationBarTitleDisplayMode(.large)
             } else {
-                List(books) { book in
-                    ZStack {
-                        NavigationLink(destination:
-                                        BookDescriptionView(bookItem: book)
-                            .toolbarRole(.editor) // Backは非表示にする
-                        ) {
-                            EmptyView()
+                List {
+                    ForEach(self.realmViewModel.booksFromData, id: \.id) { book in
+                        ZStack {
+                            NavigationLink(destination:
+                                            BookDescriptionView(bookItem: book)
+                                .toolbarRole(.editor) // Backは非表示にする
+                            ) {
+                                EmptyView()
+                            }
+                            // NavigationLinkの右の矢印を消す
+                            .opacity(0)
+                            BookDetailView(bookItem: book, isFavorite: true)
+                                .listRowInsets(rowInsets)
                         }
-                        // NavigationLinkの右の矢印を消す
-                        .opacity(0)
-                        BookDetailView(bookItem: book, isFavorite: true)
-                            .listRowInsets(rowInsets)
+                    }
+                    .onDelete { (offset) in
+                        // 削除ボタンが押されて削除されたときに呼ばれる
+                        if let row = offset.first, let targetBookItem  = self.realmViewModel.booksFromData[safe: row] {
+                            self.realmViewModel.deleteRealmBookData(bookItem: targetBookItem, withAlert: false)
+                        }
                     }
                 }
                 .listStyle(.plain)
                 .navigationTitle(Constants.favoriteList)
                 .navigationBarTitleDisplayMode(.large)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(action: {
-                            // 編集のアクション
-                        }) {
-                            Text("編集")
-                        }
-                    }
-                }
             }
         }
     }
