@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (5.6.4)
   - PKHUD (5.3.0)
+  - ReachabilitySwift (5.0.0)
   - Realm (10.34.0):
     - Realm/Headers (= 10.34.0)
   - Realm/Headers (10.34.0)
@@ -10,6 +11,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - PKHUD
+  - ReachabilitySwift
   - Realm
   - RealmSwift
 
@@ -17,15 +19,17 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - PKHUD
+    - ReachabilitySwift
     - Realm
     - RealmSwift
 
 SPEC CHECKSUMS:
   Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   Realm: 991e7c4d6d37f1d6470a48bb072782ef00b91b67
   RealmSwift: 11e77934e4af6d011d2970645fe56e11fa0e3c2c
 
-PODFILE CHECKSUM: f68be583882e561f2cfe9dd5be08067b204abc6f
+PODFILE CHECKSUM: 6ff0d5ff9264d433d6c50ff82be429d75204ec1a
 
 COCOAPODS: 1.11.3
