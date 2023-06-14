@@ -133,7 +133,6 @@ struct BookDescriptionView: View {
                                             //アラートの 削除ボタンタップで削除を実行
                                             self.realmViewModel.deleteRealmBookData(bookItem: bookItem)
                                     })*/
-                                    //アラートの 削除ボタンタップで削除を実行
                                     self.realmViewModel.deleteRealmBookData(bookItem: bookItem)
                                 } else {
                                     // お気に入り登録がなければお気に入りとしてRealmに保存する
