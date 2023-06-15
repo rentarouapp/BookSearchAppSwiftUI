@@ -10,18 +10,20 @@ import RealmSwift
 
 class RealmViewModel: ObservableObject {
     
+    // Model
     @Published var model: RealmBookModel = RealmBookModel()
     // Alert
     @Published var alertViewModel = AlertViewModel()
+    // BookData
+    @Published var booksFromData: [BookItem] = []
     
     // DBに書き込み中かどうか
     var isWorking: Bool {
         self.model.isWorking
     }
     
-    // Modelから受け取ったBookItemをViewにわたす
-    var booksFromData: [BookItem] {
-        self.model.realmBookDatas
+    init() {
+        self.booksFromData = self.model.realmBookDatas
     }
     
     // ViewからのリクエストでモデルをRealmに登録する
@@ -31,6 +33,8 @@ class RealmViewModel: ObservableObject {
         // Modelに依頼
         self.model.addRealmBookData(bookItem: bookItem, completion: { [weak self] in
             guard let `self` = self else { return }
+            self.objectWillChange.send()
+            self.booksFromData = self.model.realmBookDatas
             // 登録完了
             self.alertViewModel.alertEntity.show(alertButtonType: .singleButton,
                                                  title: Constants.realmDone,
@@ -46,8 +50,10 @@ class RealmViewModel: ObservableObject {
         // Modelに依頼
         self.model.deleteRealmBookData(bookItem: bookItem, completion: { [weak self] in
             // 削除完了
+            guard let `self` = self else { return }
+            self.objectWillChange.send()
+            self.booksFromData = self.model.realmBookDatas
             if withAlert {
-                guard let `self` = self else { return }
                 // 仕様のバグ？こうしないと即時で呼ばれない
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { [weak self] in
                     guard let `self` = self else { return }

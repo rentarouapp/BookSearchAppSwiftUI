@@ -14,22 +14,21 @@ struct FavoritesListView: View {
     
     // Realm
     @EnvironmentObject var realmViewModel: RealmViewModel
-    
-    @State var editMode: EditMode = .inactive
+    // EditModeを有効にするために＠State変数に持っておく
+    @State var realmBooks: [BookItem] = RealmViewModel().booksFromData
     
     // UI Style
     private let rowInsets: EdgeInsets = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
     
     var body: some View {
-        
         NavigationStack {
-            if self.realmViewModel.booksFromData.isEmpty {
+            if self.realmBooks.isEmpty {
                 BookSearchEmptyView()
                     .navigationTitle(Constants.favoriteList)
                     .navigationBarTitleDisplayMode(.large)
             } else {
                 List {
-                    ForEach(self.realmViewModel.booksFromData, id: \.id) { book in
+                    ForEach(self.realmBooks, id: \.id) { book in
                         ZStack {
                             NavigationLink(destination:
                                             BookDescriptionView(bookItem: book)
@@ -45,18 +44,24 @@ struct FavoritesListView: View {
                     }
                     .onDelete { (offset) in
                         // 削除ボタンが押されて削除されたときに呼ばれる
-                        if let row = offset.first, let targetBookItem  = self.realmViewModel.booksFromData[safe: row] {
-                            self.realmViewModel.deleteRealmBookData(bookItem: targetBookItem, withAlert: false)
+                        if let row = offset.first,
+                           let removeTarget = self.realmBooks[safe: row] {
+                            // 自身の変数を更新しないと削除できない
+                            self.realmBooks.remove(at: row)
+                            self.realmViewModel.deleteRealmBookData(bookItem: removeTarget, withAlert: false)
                         }
                     }
                 }
                 .toolbar {
                     EditButton()
                 }
-                .environment(\.editMode, $editMode)
                 .listStyle(.plain)
                 .navigationTitle(Constants.favoriteList)
                 .navigationBarTitleDisplayMode(.large)
+                .onAppear {
+                    // 表示のたびに更新する
+                    self.realmBooks = self.realmViewModel.booksFromData
+                }
             }
         }
     }
