@@ -67,10 +67,11 @@ class Constants {
     static let trash: String = "trash"
     
     // MARK: - EmpltyView
-    // 探している人
+    // 探している人アイコン
     static let searchMan: String = "search-man"
-    // 初期画面文言
     static let bookSearchGuide: String = "本を探せるよ！"
+    static let bookSearchNoResult: String = "「%@」\n\nでの検索結果はありませんでした"
+    static let noFavorite: String = "お気に入りされている本はないよ"
     
     // お気に入りに追加
     static let addFavorite: String = "お気に入りに追加"

@@ -16,6 +16,9 @@ struct FavoritesListView: View {
     @EnvironmentObject var realmViewModel: RealmViewModel
     // EditModeを有効にするために＠State変数に持っておく
     @State var realmBooks: [BookItem] = RealmViewModel().booksFromData
+    // 空のテキスト
+    @State var searchText: String = ""
+    @State var type: BookSearchEmptyViewType = .noFavorite
     
     // UI Style
     private let rowInsets: EdgeInsets = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
@@ -23,7 +26,7 @@ struct FavoritesListView: View {
     var body: some View {
         NavigationStack {
             if self.realmBooks.isEmpty {
-                BookSearchEmptyView()
+                BookSearchEmptyView(type: $type, searchText: $searchText, isFavorite: true)
                     .navigationTitle(Constants.favoriteList)
                     .navigationBarTitleDisplayMode(.large)
             } else {
@@ -58,11 +61,11 @@ struct FavoritesListView: View {
                 .listStyle(.plain)
                 .navigationTitle(Constants.favoriteList)
                 .navigationBarTitleDisplayMode(.large)
-                .onAppear {
-                    // 表示のたびに更新する
-                    self.realmBooks = self.realmViewModel.booksFromData
-                }
             }
+        }
+        .onAppear {
+            // 表示のたびに更新する
+            self.realmBooks = self.realmViewModel.booksFromData
         }
     }
 }

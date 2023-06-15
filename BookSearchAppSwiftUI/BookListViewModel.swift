@@ -13,6 +13,8 @@ final class BookListViewModel: NSObject, ObservableObject {
     @Published var booksSearchResponse: BooksSearchResponse = .init(items: [])
     @Published var isFetching: Bool = false
     
+    // EmptyViewの表示内容
+    @Published var type: BookSearchEmptyViewType = .initial
     // Alert
     @Published var alertViewModel = AlertViewModel()
     
@@ -38,6 +40,9 @@ final class BookListViewModel: NSObject, ObservableObject {
                     guard let self = self else { return }
                     self.isFetching = false
                     self.booksSearchResponse = response
+                    if self.booksSearchResponse.items?.count ?? 0 == 0 {
+                        self.type = .noResult
+                    }
                 }),
             // エラー
             self.errorSubject
@@ -66,7 +71,6 @@ final class BookListViewModel: NSObject, ObservableObject {
     
     // API通信のエラーをさばく
     private func handleAPIError(error: APIServiceError) {
-        
         do {
             let reachability = try Reachability()
             if reachability.connection == .unavailable {

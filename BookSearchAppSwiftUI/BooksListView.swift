@@ -36,7 +36,7 @@ struct BooksListView: View {
         
         NavigationStack {
             if books.isEmpty {
-                BookSearchEmptyView()
+                BookSearchEmptyView(type: $bookListViewModel.type, searchText: $searchText, isFavorite: false)
                     .navigationTitle(Constants.searchBook)
                     .navigationBarTitleDisplayMode(.large)
             } else {
@@ -68,6 +68,7 @@ struct BooksListView: View {
                 // クリアボタンがおされた
                 self.focus = false
                 self.bookListViewModel.cancel()
+                self.bookListViewModel.type = .initial
             }
         }
         .onSubmit(of: .search) {

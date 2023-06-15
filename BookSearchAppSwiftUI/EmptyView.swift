@@ -7,7 +7,19 @@
 
 import SwiftUI
 
+enum BookSearchEmptyViewType {
+    case initial
+    case noResult
+    case noFavorite
+}
+
 struct BookSearchEmptyView: View {
+    
+    @Binding var type: BookSearchEmptyViewType
+    @Binding var searchText: String
+    var isFavorite: Bool
+    @State var emptyText: String = Constants.bookSearchGuide
+    
     var body: some View {
         GeometryReader { geometry in
             ScrollView(.vertical) {
@@ -16,11 +28,9 @@ struct BookSearchEmptyView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     Image(Constants.searchMan)
                         .resizable()
+                        .scaledToFit()
                         .frame(width: 200, height: 200, alignment: .center)
-                        .aspectRatio(contentMode: .fit)
-                        .clipped()
-                        .background(Color.white)
-                    Text(Constants.bookSearchGuide)
+                    Text(isFavorite ? Constants.noFavorite : self.emptyText)
                         .font(Font.system(size: 20))
                         .bold()
                     Spacer()
@@ -29,12 +39,30 @@ struct BookSearchEmptyView: View {
                 .frame(width: geometry.size.width)
                 .frame(minHeight: geometry.size.height)
             }
+            .onChange(of: type, perform: { newValue in
+                self.updateText(type: type)
+            })
+        }
+    }
+    
+    func updateText(type: BookSearchEmptyViewType) {
+        if type == .initial {
+            self.emptyText = Constants.bookSearchGuide
+        } else if type == .noResult {
+            let noResultMessage: String = String(format: Constants.bookSearchNoResult, self.searchText)
+            self.emptyText = noResultMessage
+        } else if type == .noFavorite {
+            self.emptyText = Constants.noFavorite
         }
     }
 }
 
 struct BookSearchEmptyView_Previews: PreviewProvider {
+    @State static var type: BookSearchEmptyViewType = .initial
+    @State static var searchText: String = ""
+    @State static var isFavorite: Bool = false
     static var previews: some View {
-        BookSearchEmptyView().previewLayout(.sizeThatFits)
+        BookSearchEmptyView(type: $type, searchText: $searchText, isFavorite: false)
+            .previewLayout(.sizeThatFits)
     }
 }
