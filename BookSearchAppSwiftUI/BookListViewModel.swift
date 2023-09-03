@@ -97,7 +97,7 @@ final class BookListViewModel: NSObject, ObservableObject {
         case .responseError:
             print("responseError")
         case let .parseError(error):
-            print("parseError")
+            print("parseError: \(error)")
         }
     }
     
