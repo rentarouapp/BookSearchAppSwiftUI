@@ -10,7 +10,8 @@ import SwiftUI
 struct BooksListView: View {
     
     // ViewModel
-    @ObservedObject private var bookListViewModel = BookListViewModel()
+    @StateObject private var bookListViewModel = BookListViewModel()
+    
     @State private var searchText: String = ""
     @FocusState var focus: Bool
     
