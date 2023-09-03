@@ -95,7 +95,7 @@ class Constants {
     static let realmDeleteDone: String = "お気に入り削除"
     static let realmDeleteDoneMessage: String = "お気に入りから削除しました！"
     
-    // ネットワーク接続なし
+    // ネットワーク接続
     static let notNetWorking: String = "ネットワーク接続がありません"
     static let notNetWorkingMessage: String = "「設定」からネットワーク接続を確認してください。"
     
