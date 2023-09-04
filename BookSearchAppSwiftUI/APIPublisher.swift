@@ -43,6 +43,7 @@ final class APIService: APIServiceType {
         print("DEBUG_URL_CHECK: \(request.url?.absoluteString ?? "none_url")")
         return URLSession.shared.dataTaskPublisher(for: request)
             .map { data, urlResponse in data }
+            //.map { $0.data }
             .mapError { _ in APIServiceError.responseError }
             .decode(type: Request.Response.self, decoder: decoder)
             .mapError(APIServiceError.parseError)
