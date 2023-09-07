@@ -21,15 +21,15 @@ final class BookListViewModel: NSObject, ObservableObject {
     private let apiService = APIService()
     private let errorSubject = PassthroughSubject<APIServiceError, Never>()
     private let onBooksSearchSubject = PassthroughSubject<BooksSearchRequest, Never>()
+    private var onBooksSearchResponseSubject = PassthroughSubject<BooksSearchResponse, Never>()
     private var cancellables: [AnyCancellable] = []
     
     
-    private func devBind() {
-        let request = BooksSearchRequest(searchWord: "AAA", maxResults: 20)
+    private func requestSend(request: BooksSearchRequest) {
         apiService.request(with: request)
             .catch { [weak self] error -> Empty<BooksSearchResponse, Never> in
                 if let `self` = self {
-                    self.errorSubject.send(error)
+                    self.handleAPIError(error: error)
                 }
                 return .init()
             }
@@ -93,9 +93,13 @@ final class BookListViewModel: NSObject, ObservableObject {
         self.cancellables.forEach { $0.cancel() }
         self.isFetching = true
         self.bind()
-        //self.devBind()
         self.booksSearchResponse = .init(items: [])
-        self.onBooksSearchSubject.send(BooksSearchRequest(searchWord: searchWord, maxResults: maxResults))
+        
+        let request: BooksSearchRequest = BooksSearchRequest(searchWord: searchWord, maxResults: maxResults)
+        // 1: もう一つPublisherを挟んで入力値を流すケース
+        self.onBooksSearchSubject.send(request)
+        // 2: URLSession.DataTaskPublisherに直接値を入れるケース
+        //self.requestSend(request: request)
     }
     
     // 通信をキャンセルする
