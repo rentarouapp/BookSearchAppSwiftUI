@@ -179,7 +179,7 @@
 				B7AEA2802A29B9E9009069C6 /* Constants.swift */,
 				B7D981572A31FC5700EF725F /* BooksSearchResponceModel.swift */,
 				B7D981792A35AB7C00EF725F /* Extensions.swift */,
-				B7EAA57E2AAA0BF700082737 /* View */,
+				B7EAA57E2AAA0BF700082737 /* Views */,
 				B7EAA5792AAA0BEC00082737 /* API */,
 				B7D981742A35A86B00EF725F /* Alert */,
 				B7D981682A34614E00EF725F /* Database */,
@@ -255,7 +255,7 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		B7EAA57E2AAA0BF700082737 /* View */ = {
+		B7EAA57E2AAA0BF700082737 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				B7EAA57F2AAA0BF700082737 /* BookDetailView.swift */,
@@ -266,7 +266,7 @@
 				B7EAA5842AAA0BF700082737 /* ContentView.swift */,
 				B7EAA5852AAA0BF700082737 /* FavoritesListView.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
