@@ -177,8 +177,8 @@
 			children = (
 				B7AEA24D2A282664009069C6 /* BookSearchAppSwiftUIApp.swift */,
 				B7AEA2802A29B9E9009069C6 /* Constants.swift */,
-				B7D981572A31FC5700EF725F /* BooksSearchResponceModel.swift */,
 				B7D981792A35AB7C00EF725F /* Extensions.swift */,
+				B7EAA5832AAA0BF700082737 /* BookListViewModel.swift */,
 				B7EAA57E2AAA0BF700082737 /* Views */,
 				B7EAA5792AAA0BEC00082737 /* API */,
 				B7D981742A35A86B00EF725F /* Alert */,
@@ -251,6 +251,7 @@
 			children = (
 				B7EAA57A2AAA0BEC00082737 /* APIClient.swift */,
 				B7EAA57B2AAA0BEC00082737 /* APIRequest.swift */,
+				B7D981572A31FC5700EF725F /* BooksSearchResponceModel.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -262,7 +263,6 @@
 				B7EAA5802AAA0BF700082737 /* EmptyView.swift */,
 				B7EAA5812AAA0BF700082737 /* BooksListView.swift */,
 				B7EAA5822AAA0BF700082737 /* BookDescriptionView.swift */,
-				B7EAA5832AAA0BF700082737 /* BookListViewModel.swift */,
 				B7EAA5842AAA0BF700082737 /* ContentView.swift */,
 				B7EAA5852AAA0BF700082737 /* FavoritesListView.swift */,
 			);
