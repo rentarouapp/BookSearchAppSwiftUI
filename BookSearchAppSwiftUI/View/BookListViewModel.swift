@@ -21,14 +21,49 @@ final class BookListViewModel: NSObject, ObservableObject {
     private let apiService = APIService()
     private let errorSubject = PassthroughSubject<APIServiceError, Never>()
     private let onBooksSearchSubject = PassthroughSubject<BooksSearchRequest, Never>()
+    private var onBooksSearchResponseSubject = PassthroughSubject<BooksSearchResponse, Never>()
     private var cancellables: [AnyCancellable] = []
+    
+    
+    private func requestSend(request: BooksSearchRequest) {
+        apiService.request(with: request)
+            .catch { [weak self] error -> Empty<BooksSearchResponse, Never> in
+                if let `self` = self {
+                    self.handleAPIError(error: error)
+                }
+                return .init()
+            }
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    print("finished")
+                case .failure(let error):
+                    print("error: \(error)")
+                }
+            }, receiveValue: { [weak self] value in
+                guard let self = self else { return }
+                self.isFetching = false
+                self.booksSearchResponse = value
+                if self.booksSearchResponse.items?.count ?? 0 == 0 {
+                    self.type = .noResult
+                }
+            })
+            .store(in: &cancellables)
+        
+        self.errorSubject
+            .sink(receiveValue: { error in
+                self.isFetching = false
+                self.handleAPIError(error: error)
+            })
+            .store(in: &cancellables)
+    }
     
     private func bind() {
         self.cancellables += [
             // 通信結果
             self.onBooksSearchSubject
                 .flatMap { [apiService] (request) in
-                    apiService.request(with: BooksSearchRequest(searchWord: request.searchWord, maxResults: request.maxResults))
+                    apiService.request(with: request)
                         .catch { [weak self] error -> Empty<BooksSearchResponse, Never> in
                             if let `self` = self {
                                 self.errorSubject.send(error)
@@ -59,7 +94,12 @@ final class BookListViewModel: NSObject, ObservableObject {
         self.isFetching = true
         self.bind()
         self.booksSearchResponse = .init(items: [])
-        self.onBooksSearchSubject.send(BooksSearchRequest(searchWord: searchWord, maxResults: maxResults))
+        
+        let request: BooksSearchRequest = BooksSearchRequest(searchWord: searchWord, maxResults: maxResults)
+        // 1: もう一つPublisherを挟んで入力値を流すケース
+        self.onBooksSearchSubject.send(request)
+        // 2: URLSession.DataTaskPublisherに直接値を入れるケース
+        //self.requestSend(request: request)
     }
     
     // 通信をキャンセルする
